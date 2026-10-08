@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Masuk</title>
+  <meta name="description" content="Halaman masuk akun LingkunganKU.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Kembali">
+      <a href="index.html">&larr; Kembali</a>
+    </nav>
+    <h1>Lingkunganku</h1>
+  </header>
+
+  <main>
+    <section aria-labelledby="login-heading">
+      <h2 id="login-heading">Selamat Datang!</h2>
+      <p>Masuk untuk melanjutkan</p>
+
+      <form action="#" method="post">
+
+        <fieldset>
+          <legend>Informasi Akun</legend>
+
+          <label for="email-atau-telepon">Email atau nomor telepon</label>
+          <input
+            type="text"
+            id="email-atau-telepon"
+            name="email_atau_telepon"
+            placeholder="Email atau nomor telepon"
+            required
+            autocomplete="username">
+
+          <label for="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Password"
+            required
+            autocomplete="current-password">
+
+        </fieldset>
+
+        <button type="submit">Masuk</button>
+
+        <p><a href="#">Lupa password?</a></p>
+
+        <p>atau</p>
+
+        <a href="register.html">
+          <button type="button">Daftar Akun</button>
+        </a>
+
+      </form>
+    </section>
+  </main>
+
+</body>
+</html>

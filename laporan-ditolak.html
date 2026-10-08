@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Laporan Ditolak</title>
+  <meta name="description" content="Daftar laporan yang ditolak karena tidak memenuhi syarat pelaporan.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">&larr; Kembali</a>
+      <a href="index.html">logo</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="ditolak-heading">
+      <h1 id="ditolak-heading">Laporan</h1>
+      <p>Laporan yang tidak dapat diproses karena tidak memenuhi syarat atau informasi tidak lengkap.</p>
+
+      <!-- Filter Tab -->
+      <nav aria-label="Filter Status Laporan">
+        <ul>
+          <li><a href="laporan-semua.html">Semua</a></li>
+          <li><a href="laporan-diproses.html">Diproses</a></li>
+          <li><a href="laporan-selesai.html">Selesai</a></li>
+          <li><a href="laporan-ditolak.html" aria-current="page">Ditolak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Pencarian -->
+      <form action="#" method="get" role="search">
+        <fieldset>
+          <legend>Cari Laporan Ditolak</legend>
+          <label for="cari-ditolak">Kata kunci</label>
+          <input type="search" id="cari-ditolak" name="q" placeholder="Cari laporan...">
+          <button type="submit">Cari</button>
+        </fieldset>
+      </form>
+
+      <!-- Daftar Laporan Ditolak -->
+      <ul aria-label="Daftar laporan yang ditolak">
+        <li>
+          <article>
+            <h2>Sampah Menumpuk</h2>
+            <p>Kategori: Kebersihan</p>
+            <p>2 hari yang lalu</p>
+            <p>Alasan penolakan: Foto tidak jelas dan lokasi tidak terverifikasi.</p>
+            <a href="detail-laporan.html"><strong>Ditolak</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Selokan Tersumbat</h2>
+            <p>Kategori: Sanitasi</p>
+            <p>4 hari yang lalu</p>
+            <p>Alasan penolakan: Duplikasi laporan yang sudah ada sebelumnya.</p>
+            <a href="detail-laporan.html"><strong>Ditolak</strong></a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

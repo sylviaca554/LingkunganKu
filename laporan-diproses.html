@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Laporan Diproses</title>
+  <meta name="description" content="Daftar laporan yang sedang dalam proses penanganan.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">&larr; Kembali</a>
+      <a href="index.html">logo</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="diproses-heading">
+      <h1 id="diproses-heading">Laporan</h1>
+      <p>Lihat laporan yang sedang dalam proses penanganan oleh petugas.</p>
+
+      <!-- Filter Tab -->
+      <nav aria-label="Filter Status Laporan">
+        <ul>
+          <li><a href="laporan-semua.html">Semua</a></li>
+          <li><a href="laporan-diproses.html" aria-current="page">Diproses</a></li>
+          <li><a href="laporan-selesai.html">Selesai</a></li>
+          <li><a href="laporan-ditolak.html">Ditolak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Pencarian -->
+      <form action="#" method="get" role="search">
+        <fieldset>
+          <legend>Cari Laporan Diproses</legend>
+          <label for="cari-diproses">Kata kunci</label>
+          <input type="search" id="cari-diproses" name="q" placeholder="Cari laporan...">
+          <button type="submit">Cari</button>
+        </fieldset>
+      </form>
+
+      <!-- Daftar Laporan Diproses -->
+      <ul aria-label="Daftar laporan yang sedang diproses">
+        <li>
+          <article>
+            <h2>Jalan berlubang</h2>
+            <p>Kategori: Infrastruktur, Jalan Raya</p>
+            <p>2 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Sampah Menumpuk</h2>
+            <p>Kategori: Kebersihan</p>
+            <p>6 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Selokan Tersumbat</h2>
+            <p>Kategori: Sanitasi</p>
+            <p>1 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Buat Laporan</title>
+  <meta name="description" content="Formulir pembuatan laporan masalah lingkungan dalam 3 langkah: Jenis Laporan, Lokasi, dan Konfirmasi.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Kembali">
+      <a href="index.html">&larr; Kembali ke Beranda</a>
+    </nav>
+
+    <nav aria-label="Navigasi Halaman">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="laporan-semua.html">Laporan</a></li>
+        <li><a href="buat-laporan.html" aria-current="page">Buat Laporan</a></li>
+        <li><a href="notifikasi.html">Notifikasi</a></li>
+        <li><a href="profil.html">Profil</a></li>
+      </ul>
+    </nav>
+
+    <!-- Stepper / Indikator Langkah -->
+    <nav aria-label="Langkah pengisian laporan">
+      <ol>
+        <li aria-current="step">
+          <strong>1</strong>
+          <span>Jenis Laporan</span>
+        </li>
+        <li>
+          <strong>2</strong>
+          <span>Lokasi</span>
+        </li>
+        <li>
+          <strong>3</strong>
+          <span>Konfirmasi</span>
+        </li>
+      </ol>
+    </nav>
+  </header>
+
+  <main>
+
+    <form action="#" method="post">
+
+      <!-- ==================== LANGKAH 1: JENIS LAPORAN ==================== -->
+      <section aria-labelledby="step1-heading">
+        <h1 id="step1-heading">Langkah 1: Jenis Laporan</h1>
+
+        <!-- Pilih Kategori -->
+        <fieldset>
+          <legend>Pilih Kategori</legend>
+
+          <ul>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="jalan" required>
+                Jalan
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="lampu-jalan">
+                Lampu Jalan
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="sampah">
+                Sampah
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="selokan">
+                Selokan
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="taman">
+                Taman
+              </label>
+            </li>
+            <li>
+              <label>
+                <input type="radio" name="kategori" value="lainnya">
+                Lainnya
+              </label>
+            </li>
+          </ul>
+        </fieldset>
+
+        <!-- Deskripsi Laporan -->
+        <fieldset>
+          <legend>Deskripsi Laporan</legend>
+          <label for="deskripsi">Tulis deskripsi masalah <abbr title="wajib diisi">*</abbr></label>
+          <textarea id="deskripsi" name="deskripsi" rows="4" placeholder="Jelaskan permasalahan secara detail..." required></textarea>
+        </fieldset>
+
+        <!-- Foto / Dokumentasi -->
+        <fieldset>
+          <legend>Foto / Dokumentasi</legend>
+          <label for="foto-laporan">Tambah Foto</label>
+          <input type="file" id="foto-laporan" name="foto_laporan" accept="image/webp, image/png, image/jpeg" multiple>
+          <p>Format yang diterima: WebP, PNG, JPG. Maksimal 5 MB.</p>
+        </fieldset>
+
+        <button type="button">Selanjutnya</button>
+      </section>
+
+      <!-- ==================== LANGKAH 2: LOKASI ==================== -->
+      <section aria-labelledby="step2-heading">
+        <h2 id="step2-heading">Langkah 2: Lokasi</h2>
+
+        <fieldset>
+          <legend>Pilih Lokasi</legend>
+
+          <ol>
+            <li>
+              <label for="kecamatan">Pilih Lokasi Kecamatan <abbr title="wajib diisi">*</abbr></label>
+              <select id="kecamatan" name="kecamatan" required>
+                <option value="">-- Pilih Kecamatan --</option>
+                <option value="prambon">Prambon</option>
+                <option value="palmerah">Palmerah</option>
+                <option value="kebon-jeruk">Kebon Jeruk</option>
+                <option value="slipi">Slipi</option>
+                <option value="gambir">Gambir</option>
+              </select>
+            </li>
+
+            <li>
+              <label for="kelurahan">Pilih Lokasi Desa/Kelurahan <abbr title="wajib diisi">*</abbr></label>
+              <select id="kelurahan" name="kelurahan" required>
+                <option value="">-- Pilih Kelurahan --</option>
+                <option value="bandung">Bandung</option>
+                <option value="kemanggisan">Kemanggisan</option>
+                <option value="slipi">Slipi</option>
+                <option value="palmerah">Palmerah</option>
+              </select>
+            </li>
+
+            <li>
+              <label for="titik-maps">Arahkan Titik Maps</label>
+              <input type="text" id="titik-maps" name="titik_maps" placeholder="Contoh: -6.1751, 106.8272">
+              <p>Masukkan koordinat atau nama lokasi pada peta.</p>
+            </li>
+          </ol>
+        </fieldset>
+
+        <a href="buat-laporan.html"><button type="button">Kembali</button></a>
+        <button type="button">Selanjutnya</button>
+      </section>
+
+      <!-- ==================== LANGKAH 3: KONFIRMASI ==================== -->
+      <section aria-labelledby="step3-heading">
+        <h2 id="step3-heading">Langkah 3: Konfirmasi Laporan</h2>
+
+        <!-- Pratinjau Foto -->
+        <section aria-labelledby="konfirmasi-foto-heading">
+          <h3 id="konfirmasi-foto-heading">Foto / Dokumentasi</h3>
+          <figure>
+            <figcaption>Pratinjau foto laporan yang diunggah</figcaption>
+          </figure>
+        </section>
+
+        <!-- Ringkasan Data -->
+        <section aria-labelledby="konfirmasi-data-heading">
+          <h3 id="konfirmasi-data-heading">Ringkasan Laporan</h3>
+          <table>
+            <caption>Data laporan yang akan dikirimkan</caption>
+            <tbody>
+              <tr>
+                <th scope="row">Kategori</th>
+                <td>Jalan</td>
+              </tr>
+              <tr>
+                <th scope="row">Deskripsi</th>
+                <td>Jalan berlubang sudah beberapa bulan dan menimbulkan banyak kecelakaan</td>
+              </tr>
+              <tr>
+                <th scope="row">Lokasi</th>
+                <td>Desa Bandung, Kec. Prambon</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Lokasi Peta -->
+        <section aria-labelledby="konfirmasi-lokasi-heading">
+          <h3 id="konfirmasi-lokasi-heading">Lokasi pada Peta</h3>
+          <p>Titik lokasi: Desa Bandung, Kec. Prambon</p>
+        </section>
+
+        <!-- Persetujuan -->
+        <fieldset>
+          <legend>Pernyataan</legend>
+          <input type="checkbox" id="persetujuan" name="persetujuan" required>
+          <label for="persetujuan">
+            Saya menyatakan bahwa informasi yang saya berikan adalah benar dan dapat dipertanggungjawabkan.
+          </label>
+        </fieldset>
+
+        <a href="buat-laporan.html"><button type="button">Kembali</button></a>
+        <button type="submit">Kirim</button>
+
+      </section>
+
+    </form>
+
+  </main>
+
+</body>
+</html>

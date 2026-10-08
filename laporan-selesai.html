@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Laporan Selesai</title>
+  <meta name="description" content="Daftar laporan yang telah selesai ditangani.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">&larr; Kembali</a>
+      <a href="index.html">logo</a>
+    </nav>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="selesai-heading">
+      <h1 id="selesai-heading">Laporan</h1>
+      <p>Laporan yang telah berhasil ditangani oleh petugas terkait.</p>
+
+      <!-- Filter Tab -->
+      <nav aria-label="Filter Status Laporan">
+        <ul>
+          <li><a href="laporan-semua.html">Semua</a></li>
+          <li><a href="laporan-diproses.html">Diproses</a></li>
+          <li><a href="laporan-selesai.html" aria-current="page">Selesai</a></li>
+          <li><a href="laporan-ditolak.html">Ditolak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Pencarian -->
+      <form action="#" method="get" role="search">
+        <fieldset>
+          <legend>Cari Laporan Selesai</legend>
+          <label for="cari-selesai">Kata kunci</label>
+          <input type="search" id="cari-selesai" name="q" placeholder="Cari laporan...">
+          <button type="submit">Cari</button>
+        </fieldset>
+      </form>
+
+      <!-- Daftar Laporan Selesai -->
+      <ul aria-label="Daftar laporan yang telah selesai ditangani">
+        <li>
+          <article>
+            <h2>Lampu Jalan Mati</h2>
+            <p>Kategori: Fasilitas Umum</p>
+            <p>3 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Kebakaran Hutan</h2>
+            <p>Kategori: Darurat Lingkungan</p>
+            <p>1 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Jalan berlubang</h2>
+            <p>Kategori: Infrastruktur</p>
+            <p>3 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

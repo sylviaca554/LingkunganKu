@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Laporan Semua</title>
+  <meta name="description" content="Daftar semua laporan masalah lingkungan.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">&larr; Kembali</a>
+      <a href="index.html">logo</a>
+    </nav>
+
+    <nav aria-label="Navigasi Halaman">
+      <ul>
+        <li><a href="index.html">Beranda</a></li>
+        <li><a href="laporan-semua.html" aria-current="page">Laporan</a></li>
+        <li><a href="buat-laporan.html">Buat Laporan</a></li>
+        <li><a href="notifikasi.html">Notifikasi</a></li>
+        <li><a href="profil.html">Profil</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+
+    <section aria-labelledby="laporan-heading">
+      <h1 id="laporan-heading">Laporan</h1>
+      <p>Lihat semua laporan yang telah dikirimkan atau buat laporan baru.</p>
+
+      <!-- Filter Tab -->
+      <nav aria-label="Filter Status Laporan">
+        <ul>
+          <li><a href="laporan-semua.html" aria-current="page">Semua</a></li>
+          <li><a href="laporan-diproses.html">Diproses</a></li>
+          <li><a href="laporan-selesai.html">Selesai</a></li>
+          <li><a href="laporan-ditolak.html">Ditolak</a></li>
+        </ul>
+      </nav>
+
+      <!-- Pencarian -->
+      <form action="#" method="get" role="search">
+        <fieldset>
+          <legend>Cari Laporan</legend>
+          <label for="cari-laporan">Kata kunci</label>
+          <input type="search" id="cari-laporan" name="q" placeholder="Cari laporan...">
+          <button type="submit">Cari</button>
+        </fieldset>
+      </form>
+
+      <!-- Daftar Laporan -->
+      <ul aria-label="Daftar semua laporan">
+        <li>
+          <article>
+            <h2>Jalan berlubang</h2>
+            <p>Kategori: Infrastruktur, Jalan Raya</p>
+            <p>2 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Lampu Jalan Mati</h2>
+            <p>Kategori: Fasilitas Umum</p>
+            <p>3 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Sampah Menumpuk</h2>
+            <p>Kategori: Kebersihan</p>
+            <p>6 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Selokan Tersumbat</h2>
+            <p>Kategori: Sanitasi</p>
+            <p>12 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Menunggu</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Kebakaran Hutan</h2>
+            <p>Kategori: Darurat Lingkungan</p>
+            <p>1 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h2>Sampah Menumpuk</h2>
+            <p>Kategori: Kebersihan</p>
+            <p>2 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Ditolak</strong></a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+</body>
+</html>

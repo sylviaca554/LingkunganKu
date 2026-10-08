@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Buat Akun</title>
+  <meta name="description" content="Halaman pendaftaran akun baru LingkunganKU.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Kembali">
+      <a href="login.html">&larr; Kembali</a>
+    </nav>
+    <h1>Buat Akun</h1>
+    <p>Isi data berikut untuk mendaftar</p>
+  </header>
+
+  <main>
+    <section aria-labelledby="register-heading">
+      <h2 id="register-heading">Formulir Pendaftaran</h2>
+
+      <form action="#" method="post">
+
+        <fieldset>
+          <legend>Data Diri</legend>
+
+          <label for="nama-lengkap">Nama lengkap <abbr title="wajib diisi">*</abbr></label>
+          <input
+            type="text"
+            id="nama-lengkap"
+            name="nama_lengkap"
+            placeholder="Nama lengkap"
+            required
+            autocomplete="name">
+
+          <label for="email-telepon">Email atau nomor telepon <abbr title="wajib diisi">*</abbr></label>
+          <input
+            type="text"
+            id="email-telepon"
+            name="email_telepon"
+            placeholder="Email atau nomor telepon"
+            required
+            autocomplete="username">
+
+          <label for="password-baru">Password <abbr title="wajib diisi">*</abbr></label>
+          <input
+            type="password"
+            id="password-baru"
+            name="password"
+            placeholder="Password"
+            required
+            autocomplete="new-password">
+
+          <label for="konfirmasi-password">Konfirmasi password <abbr title="wajib diisi">*</abbr></label>
+          <input
+            type="password"
+            id="konfirmasi-password"
+            name="konfirmasi_password"
+            placeholder="Konfirmasi password"
+            required
+            autocomplete="new-password">
+
+        </fieldset>
+
+        <button type="submit">Daftar</button>
+
+      </form>
+
+      <p>Sudah punya akun? <a href="login.html">Masuk</a></p>
+
+    </section>
+  </main>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Detail Laporan</title>
+  <meta name="description" content="Halaman detail laporan masalah lingkungan beserta informasi lokasi dan status.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Kembali">
+      <a href="laporan-semua.html">&larr; Kembali</a>
+    </nav>
+    <h1>Detail Laporan</h1>
+  </header>
+
+  <main>
+
+    <!-- Foto Laporan -->
+    <section aria-labelledby="foto-laporan-heading">
+      <h2 id="foto-laporan-heading">Foto Laporan</h2>
+      <figure>
+        <img src="./assets/images/jalan-berlubang.webp" alt="Foto jalan berlubang di Jl. Kemanggisan Raya, Palmerah" width="360">
+        <figcaption>Kondisi jalan berlubang yang membahayakan pengguna jalan.</figcaption>
+      </figure>
+    </section>
+
+    <!-- Judul dan Status -->
+    <section aria-labelledby="info-utama-heading">
+      <h2 id="info-utama-heading">Jalan Rusak</h2>
+      <p><strong>Status:</strong> <mark>Diproses</mark></p>
+      <p>Lokasi: Jl. Kemanggisan Raya, Palmerah</p>
+      <p>Waktu: 3 Jam yang lalu</p>
+    </section>
+
+    <!-- Deskripsi Laporan -->
+    <section aria-labelledby="deskripsi-heading">
+      <h2 id="deskripsi-heading">Deskripsi Laporan</h2>
+      <p>
+        Terdapat lubang besar di tengah jalan sepanjang kurang lebih 1 meter dengan kedalaman 20 cm.
+        Kondisi ini sangat membahayakan pengendara motor dan mobil yang melintas, terutama pada malam hari
+        karena minimnya penerangan di lokasi tersebut.
+      </p>
+    </section>
+
+    <!-- Informasi Detail -->
+    <section aria-labelledby="info-detail-heading">
+      <h2 id="info-detail-heading">Informasi Detail</h2>
+      <table>
+        <caption>Detail informasi laporan jalan rusak</caption>
+        <tbody>
+          <tr>
+            <th scope="row">Kategori</th>
+            <td>Infrastruktur</td>
+          </tr>
+          <tr>
+            <th scope="row">ID Laporan</th>
+            <td>#LK-12.037</td>
+          </tr>
+          <tr>
+            <th scope="row">Dilaporkan</th>
+            <td>Budi Santoso, 3 Jam yang lalu</td>
+          </tr>
+          <tr>
+            <th scope="row">Lokasi GPS</th>
+            <td>-6.1702, 106.8137</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Tombol Aksi -->
+    <section aria-label="Aksi Laporan">
+      <a href="detail-penanganan.html">
+        <button type="button">Lihat Detail Penanganan</button>
+      </a>
+    </section>
+
+  </main>
+
+</body>
+</html>

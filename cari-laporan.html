@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Cari Laporan</title>
+  <meta name="description" content="Cari laporan masalah lingkungan berdasarkan kata kunci atau alamat. Tidak perlu login.">
+</head>
+<body>
+
+  <header>
+    <nav aria-label="Navigasi Kembali">
+      <a href="index.html">&larr; Kembali</a>
+    </nav>
+    <h1>Cari Laporan</h1>
+    <p>Temukan laporan lingkungan tanpa perlu masuk akun.</p>
+  </header>
+
+  <main>
+
+    <!-- Form Pencarian -->
+    <section aria-labelledby="cari-heading">
+      <h2 id="cari-heading">Pencarian Laporan</h2>
+
+      <form action="cari-laporan.html" method="get" role="search">
+        <fieldset>
+          <legend>Cari berdasarkan kata kunci atau alamat</legend>
+          <label for="kata-kunci">Kata kunci</label>
+          <input
+            type="search"
+            id="kata-kunci"
+            name="q"
+            placeholder="Contoh: jalan berlubang, Palmerah, sampah..."
+            autofocus>
+          <button type="submit">Cari</button>
+        </fieldset>
+      </form>
+    </section>
+
+    <!-- Hasil Pencarian -->
+    <section aria-labelledby="hasil-heading">
+      <h2 id="hasil-heading">Hasil Pencarian</h2>
+      <p>Menampilkan laporan yang relevan dengan kata kunci Anda.</p>
+
+      <ul aria-label="Daftar hasil pencarian laporan">
+        <li>
+          <article>
+            <h3>Jalan berlubang</h3>
+            <p>Kategori: Infrastruktur</p>
+            <p>Lokasi: Jl. Kemanggisan Utama, Palmerah</p>
+            <p>2 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Jalan berlubang</h3>
+            <p>Kategori: Infrastruktur</p>
+            <p>Lokasi: Jl. Raya Panjang, Kebon Jeruk</p>
+            <p>1 hari yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Sampah Menumpuk</h3>
+            <p>Kategori: Kebersihan</p>
+            <p>Lokasi: Jl. Anggrek No.7, Slipi</p>
+            <p>5 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Diproses</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Lampu Jalan Mati</h3>
+            <p>Kategori: Fasilitas Umum</p>
+            <p>Lokasi: Jl. Panjang, Kebon Jeruk</p>
+            <p>8 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Selesai</strong></a>
+          </article>
+        </li>
+        <li>
+          <article>
+            <h3>Selokan Tersumbat</h3>
+            <p>Kategori: Sanitasi</p>
+            <p>Lokasi: Jl. Rawa Belong, Palmerah</p>
+            <p>12 jam yang lalu</p>
+            <a href="detail-laporan.html"><strong>Menunggu</strong></a>
+          </article>
+        </li>
+      </ul>
+    </section>
+
+    <!-- CTA Login untuk buat laporan -->
+    <section aria-labelledby="cta-heading">
+      <h2 id="cta-heading">Ingin Membuat Laporan?</h2>
+      <p>Masuk atau daftar akun untuk melaporkan masalah lingkungan di sekitar Anda.</p>
+      <a href="login.html">
+        <button type="button">Masuk</button>
+      </a>
+      <a href="register.html">
+        <button type="button">Daftar Akun</button>
+      </a>
+    </section>
+
+  </main>
+
+</body>
+</html>

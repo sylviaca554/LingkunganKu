@@ -7,100 +7,97 @@
   <meta name="description" content="Halaman notifikasi aktivitas laporan LingkunganKU.">
 </head>
 <body>
+  <script>
+    window.location.replace('notifikasi-semua.html');
+  </script>
 
   <header>
-    <h1>Notifikasi</h1>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">
+        <img src="./assets/images/logo.png" alt="Logo LingkunganKU" width="40" height="40">
+        <br>LingkunganKU
+      </a>
+    </nav>
 
     <nav aria-label="Navigasi Halaman">
       <ul>
         <li><a href="index.html">Beranda</a></li>
         <li><a href="laporan-semua.html">Laporan</a></li>
-        <li><a href="buat-laporan.html">Buat</a></li>
+        <li><a href="buat-laporan.html">Buat Laporan</a></li>
         <li><a href="notifikasi.html" aria-current="page">Notifikasi</a></li>
         <li><a href="profil.html">Profil</a></li>
       </ul>
     </nav>
 
-    <!-- Filter Tab -->
+    <h1>Notifikasi</h1>
+
     <nav aria-label="Filter Notifikasi">
       <ul>
-        <li><a href="#">Semua</a></li>
-        <li><a href="#" aria-current="page">Laporan</a></li>
-        <li><a href="#">Pemberitahuan</a></li>
+        <li><a href="notifikasi-semua.html">Semua</a></li>
+        <li><a href="notifikasi-laporan.html">Laporan</a></li>
+        <li><a href="notifikasi-pemberitahuan.html">Pemberitahuan</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
 
-    <!-- Notifikasi Hari Ini -->
     <section aria-labelledby="hari-ini-heading">
-      <h2 id="hari-ini-heading">Hari Ini</h2>
-
+      <h3 id="hari-ini-heading">Hari Ini</h3>
       <ul aria-label="Notifikasi hari ini">
         <li>
           <article>
-            <h3>Laporan Diproses</h3>
-            <p>Laporan Jalan Rusak di Jl. Diponegoro telah diterima oleh petugas.</p>
-            <time datetime="2026-10-07T14:53">14:53</time>
-          </article>
+            <p><b><a href="laporan-diproses.html">Laporan Diproses</a></b><br><small>Laporan Jalan Rusak di Jl. Diponegoro telah diterima oleh petugas.<br><time datetime="2026-10-09T14:53">14:53</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Diterima</h3>
-            <p>Laporan Lampu Jalan Mati di Jl. Diponegoro sedang dalam proses peninjauan.</p>
-            <time datetime="2026-10-07T09:12">09:12</time>
-          </article>
+            <p><b><a href="detail-laporan.html">Laporan Diterima</a></b><br><small>Laporan Lampu Jalan Mati di Jl. Diponegoro sedang dalam proses peninjauan.<br><time datetime="2026-10-09T09:12">09:12</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Selesai</h3>
-            <p>Laporan Sampah Menumpuk telah selesai ditindaklanjuti.</p>
-            <time datetime="2026-10-07T13:42">13:42</time>
-          </article>
+            <p><b><a href="laporan-selesai.html">Laporan Selesai</a></b><br><small>Laporan Sampah Menumpuk telah selesai ditindaklanjuti.<br><time datetime="2026-10-09T13:42">13:42</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Ditolak</h3>
-            <p>Laporan Drainase tidak bisa diproses karena diluar wilayah Kabupaten Nganjuk.</p>
-            <time datetime="2026-10-07T14:30">14:30</time>
-          </article>
+            <p><b><a href="laporan-ditolak.html">Laporan Ditolak</a></b><br><small>Laporan Drainase tidak bisa diproses karena diluar wilayah Kabupaten Nganjuk.<br><time datetime="2026-10-09T14:30">14:30</time></small></p></article>
         </li>
       </ul>
     </section>
 
-    <!-- Notifikasi Bulan Lalu -->
-    <section aria-labelledby="bulan-lalu-heading">
-      <h2 id="bulan-lalu-heading">Bulan Lalu</h2>
+    <section aria-labelledby="kemarin-heading">
+      <h3 id="kemarin-heading">Kemarin</h3>
+      <ul aria-label="Notifikasi kemarin">
+        <li>
+          <article>
+            <p><b><a href="notifikasi-pemberitahuan.html">Pemerintah</a></b><br><small>Perubahan Jadwal Pengambilan Sampah di Desa Mulyorejo.<br><time datetime="2026-10-08T18:30">18:30</time></small></p></article>
+        </li>
+      </ul>
+    </section>
 
+    <section aria-labelledby="bulan-lalu-heading">
+      <h3 id="bulan-lalu-heading">Bulan Lalu</h3>
       <ul aria-label="Notifikasi bulan lalu">
         <li>
           <article>
-            <h3>Laporan Diproses</h3>
-            <p>Laporan Jalan Rusak di Jl. Diponegoro telah diterima oleh petugas.</p>
-            <time datetime="2026-09-28T13:11">28-09-2026, 13:11</time>
-          </article>
+            <p><b><a href="laporan-diproses.html">Laporan Diproses</a></b><br><small>Laporan Jalan Rusak di Jl. Diponegoro telah diterima oleh petugas.<br><time datetime="2026-09-28T13:11">28-09-2026, 13:11</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Diterima</h3>
-            <p>Laporan Lampu Jalan Mati di Jl. Diponegoro sedang dalam proses peninjauan.</p>
-            <time datetime="2026-09-22T09:12">22-09-2026, 09:12</time>
-          </article>
+            <p><b><a href="detail-laporan.html">Laporan Diterima</a></b><br><small>Laporan Lampu Jalan Mati di Jl. Diponegoro sedang dalam proses peninjauan.<br><time datetime="2026-09-22T09:12">22-09-2026, 09:12</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Selesai</h3>
-            <p>Laporan Sampah Menumpuk telah selesai ditindaklanjuti.</p>
-            <time datetime="2026-09-20T15:01">20-09-2026, 15:01</time>
-          </article>
+            <p><b><a href="laporan-selesai.html">Laporan Selesai</a></b><br><small>Laporan Sampah Menumpuk telah selesai ditindaklanjuti.<br><time datetime="2026-09-20T15:01">20-09-2026, 15:01</time></small></p></article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Laporan Ditolak</h3>
-            <p>Laporan Drainase tidak bisa diproses karena diluar wilayah Kabupaten Nganjuk.</p>
-            <time datetime="2026-09-18T14:54">18-09-2026, 14:54</time>
-          </article>
+            <p><b><a href="laporan-ditolak.html">Laporan Ditolak</a></b><br><small>Laporan Drainase tidak bisa diproses karena diluar wilayah Kabupaten Nganjuk.<br><time datetime="2026-09-18T14:54">18-09-2026, 14:54</time></small></p></article>
         </li>
       </ul>
     </section>
@@ -109,3 +106,5 @@
 
 </body>
 </html>
+
+

@@ -20,7 +20,7 @@
     <section aria-labelledby="register-heading">
       <h2 id="register-heading">Formulir Pendaftaran</h2>
 
-      <form action="#" method="post">
+      <form action="#" method="post" id="form-register">
 
         <fieldset>
           <legend>Data Diri</legend>
@@ -71,6 +71,31 @@
 
     </section>
   </main>
+
+  <script>
+    document.getElementById('form-register').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var nama = document.getElementById('nama-lengkap').value.trim();
+      var email = document.getElementById('email-telepon').value.trim();
+      var password = document.getElementById('password-baru').value;
+      var konfirmasi = document.getElementById('konfirmasi-password').value;
+
+      if (password !== konfirmasi) {
+        alert('Password dan konfirmasi password tidak cocok.');
+        return;
+      }
+
+      // Simpan nama berdasarkan email/telepon agar bisa dikenali saat login
+      localStorage.setItem('lingkunganku_nama_daftar_' + email, nama);
+
+      // Langsung login setelah daftar
+      localStorage.setItem('lingkunganku_nama', nama);
+      localStorage.setItem('lingkunganku_email', email);
+
+      window.location.href = 'index.html';
+    });
+  </script>
 
 </body>
 </html>

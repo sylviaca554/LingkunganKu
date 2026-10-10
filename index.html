@@ -10,7 +10,10 @@
 
   <header>
     <nav aria-label="Navigasi Utama">
-      <a href="index.html">logo</a>
+      <a href="index.html">
+        <img src="./assets/images/logo.png" alt="Logo LingkunganKU" width="40" height="40">
+        <br>LingkunganKU
+      </a>
     </nav>
 
     <nav aria-label="Navigasi Halaman">
@@ -23,7 +26,8 @@
       </ul>
     </nav>
 
-    <nav aria-label="Akun Pengguna">
+    <!-- Tombol akun: berubah sesuai status login -->
+    <nav aria-label="Akun Pengguna" id="nav-akun">
       <a href="login.html">
         <button type="button">Masuk</button>
       </a>
@@ -35,12 +39,10 @@
 
   <main>
 
-    <!-- Hero / Sambutan -->
+    <!-- Hero / Sambutan: berubah sesuai status login -->
     <section aria-labelledby="sambutan-heading">
-      <h1 id="sambutan-heading">Halo, Salsa!</h1>
-      <p>lingkunganku@gmail.com</p>
-      <p>Admin Kelurahan Merdeka</p>
-      <p>Aktif menjaga kebersihan lingkungan sekitar</p>
+      <h1 id="sambutan-heading">Selamat Datang di LingkunganKU</h1>
+      <p id="sambutan-sub">Laporkan masalah lingkungan di sekitar Anda.</p>
       <figure>
         <figcaption>Ilustrasi lingkungan hijau bersih</figcaption>
       </figure>
@@ -56,45 +58,82 @@
     <!-- Laporan di Sekitar -->
     <section aria-labelledby="laporan-sekitar-heading">
       <h2 id="laporan-sekitar-heading">Laporan di Sekitar</h2>
-      <p>1.302 Terkirim &bull; 3</p>
+      <p>1.302 Terkirim &bull; 3 &nbsp;|&nbsp; <a href="#" id="link-lihat-semua">Lihat Semua</a></p>
 
       <ul>
         <li>
           <article>
-            <h3>Jalan berlubang</h3>
-            <p>Jl. Kemanggisan Utama, Palmerah</p>
-            <p>2 Jam yang lalu</p>
-            <a href="laporan-semua.html"><strong>Diproses</strong></a>
+            <p>
+              <b>Jalan berlubang</b><br>
+              <img src="./assets/images/laporan-jalan-berlubang.webp" alt="Foto laporan jalan berlubang" width="80">
+              <br><small>Jl. Kemanggisan Utama, Palmerah &bull; 2 Jam yang lalu</small><br>
+              <a href="laporan-semua.html"><small><strong>Diproses</strong></small></a>
+            </p>
           </article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Sampah Menumpuk</h3>
-            <p>Jl. Anggrek No.7, Slipi</p>
-            <p>5 Jam yang lalu</p>
-            <a href="laporan-semua.html"><strong>Diproses</strong></a>
+            <p>
+              <b>Sampah Menumpuk</b><br>
+              <img src="./assets/images/laporan-sampah-menumpuk.webp" alt="Foto laporan sampah menumpuk" width="80">
+              <br><small>Jl. Anggrek No.7, Slipi &bull; 5 Jam yang lalu</small><br>
+              <a href="laporan-semua.html"><small><strong>Diproses</strong></small></a>
+            </p>
           </article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Lampu Jalan Mati</h3>
-            <p>Jl. Panjang, Kebon Jeruk</p>
-            <p>8 Jam yang lalu</p>
-            <a href="laporan-semua.html"><strong>Selesai</strong></a>
+            <p>
+              <b>Lampu Jalan Mati</b><br>
+              <img src="./assets/images/laporan-lampu-jalan-mati.webp" alt="Foto laporan lampu jalan mati" width="80">
+              <br><small>Jl. Panjang, Kebon Jeruk &bull; 8 Jam yang lalu</small><br>
+              <a href="laporan-semua.html"><small><strong>Selesai</strong></small></a>
+            </p>
           </article>
         </li>
+        <hr>
         <li>
           <article>
-            <h3>Selokan Tersumbat</h3>
-            <p>Jl. Rawa Belong, Palmerah</p>
-            <p>12 Jam yang lalu</p>
-            <a href="laporan-semua.html"><strong>Menunggu</strong></a>
+            <p>
+              <b>Selokan Tersumbat</b><br>
+              <img src="./assets/images/laporan-selokan-tersumbat.webp" alt="Foto laporan selokan tersumbat" width="80">
+              <br><small>Jl. Rawa Belong, Palmerah &bull; 12 Jam yang lalu</small><br>
+              <a href="laporan-semua.html"><small><strong>Menunggu</strong></small></a>
+            </p>
           </article>
         </li>
       </ul>
     </section>
 
   </main>
+
+
+
+  <script>
+    var nama = localStorage.getItem('lingkunganku_nama');
+    var email = localStorage.getItem('lingkunganku_email');
+
+    if (nama) {
+      // Sudah login: ubah sambutan
+      document.getElementById('sambutan-heading').textContent = 'Halo, ' + nama + '!';
+      document.getElementById('sambutan-sub').textContent = '';
+
+      // Sembunyikan tombol Masuk/Daftar
+      document.getElementById('nav-akun').innerHTML = '';
+    }
+
+    // Lihat Semua: cek login
+    document.getElementById('link-lihat-semua').addEventListener('click', function (e) {
+      e.preventDefault();
+      if (localStorage.getItem('lingkunganku_nama')) {
+        window.location.href = 'laporan-semua.html';
+      } else {
+        window.location.href = 'login.html';
+      }
+    });
+  </script>
 
 </body>
 </html>

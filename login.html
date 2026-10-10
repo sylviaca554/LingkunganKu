@@ -12,7 +12,7 @@
     <nav aria-label="Navigasi Kembali">
       <a href="index.html">&larr; Kembali</a>
     </nav>
-    <h1>Lingkunganku</h1>
+    <h1>LingkunganKU</h1>
   </header>
 
   <main>
@@ -20,7 +20,7 @@
       <h2 id="login-heading">Selamat Datang!</h2>
       <p>Masuk untuk melanjutkan</p>
 
-      <form action="#" method="post">
+      <form action="#" method="post" id="form-login">
 
         <fieldset>
           <legend>Informasi Akun</legend>
@@ -58,6 +58,28 @@
       </form>
     </section>
   </main>
+
+  <script>
+    // Jika sudah login, langsung ke beranda
+    if (localStorage.getItem('lingkunganku_nama')) {
+      window.location.href = 'index.html';
+    }
+
+    document.getElementById('form-login').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      var emailInput = document.getElementById('email-atau-telepon').value.trim();
+
+      // Ambil nama dari akun yang pernah daftar, atau gunakan bagian sebelum @ sebagai nama
+      var namaTersimpan = localStorage.getItem('lingkunganku_nama_daftar_' + emailInput);
+      var nama = namaTersimpan ? namaTersimpan : emailInput.split('@')[0];
+
+      localStorage.setItem('lingkunganku_nama', nama);
+      localStorage.setItem('lingkunganku_email', emailInput);
+
+      window.location.href = 'index.html';
+    });
+  </script>
 
 </body>
 </html>

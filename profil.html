@@ -9,7 +9,12 @@
 <body>
 
   <header>
-    <h1>Pengaturan</h1>
+    <nav aria-label="Navigasi Utama">
+      <a href="index.html">
+        <img src="./assets/images/logo.png" alt="Logo LingkunganKU" width="40" height="40">
+        <br>LingkunganKU
+      </a>
+    </nav>
 
     <nav aria-label="Navigasi Halaman">
       <ul>
@@ -20,6 +25,8 @@
         <li><a href="profil.html" aria-current="page">Profil</a></li>
       </ul>
     </nav>
+
+    <h1>Pengaturan</h1>
   </header>
 
   <main>
@@ -27,61 +34,82 @@
     <!-- Info Profil -->
     <section aria-labelledby="profil-heading">
       <h2 id="profil-heading">Profil Pengguna</h2>
-      <figure>
-        <img src="./assets/images/avatar-pengguna.webp" alt="Foto profil Salsania Azzahra" width="64">
-        <figcaption>
-          <strong>Salsania Azzahra</strong>
-          <p>+62 812 2345 7890</p>
-        </figcaption>
-      </figure>
+      <table>
+        <tr>
+          <td>
+            <img src="./assets/images/foto_profil.jpg" alt="Foto profil" width="60" height="60">
+          </td>
+          <td>
+            <strong id="profil-nama">-</strong><br>
+            <small id="profil-kontak">-</small>
+          </td>
+        </tr>
+      </table>
       <a href="#">&rsaquo;</a>
     </section>
 
     <!-- Menu Pengaturan -->
     <nav aria-label="Menu Pengaturan">
-      <ul>
-        <li>
-          <a href="#">
-            <h3>Akun</h3>
-            <p>Kelola akun</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <h3>Bantuan</h3>
-            <p>Pusat bantuan dan FAQ</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <h3>Syarat dan ketentuan</h3>
-            <p>Ketentuan penggunaan aplikasi</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <h3>Tentang Lingkunganku</h3>
-            <p>Versi aplikasi 1.0.0</p>
-          </a>
-        </li>
-        <li>
-          <a href="#">
-            <h3>Privasi dan Keamanan</h3>
-            <p>Ubah informasi akun</p>
-          </a>
-        </li>
-      </ul>
+      <hr>
+      <p>
+        <b><a href="#">Akun</a></b><br>
+        <small>Kelola akun</small>
+      </p>
+      <hr>
+      <p>
+        <b><a href="#">Bantuan</a></b><br>
+        <small>Pusat bantuan dan FAQ</small>
+      </p>
+      <hr>
+      <p>
+        <b><a href="#">Syarat dan ketentuan</a></b><br>
+        <small>Ketentuan penggunaan aplikasi</small>
+      </p>
+      <hr>
+      <p>
+        <b><a href="#">Tentang Lingkunganku</a></b><br>
+        <small>Versi aplikasi 1.0.0</small>
+      </p>
+      <hr>
+      <p>
+        <b><a href="#">Privasi dan Keamanan</a></b><br>
+        <small>Ubah informasi akun</small>
+      </p>
+      <hr>
     </nav>
 
     <!-- Tombol Keluar -->
     <section aria-label="Keluar Akun">
-      <a href="login.html">
-        <button type="button">Keluar</button>
-      </a>
+      <a href="login.html" id="link-keluar">Keluar</a>
       <p>Versi 1.0.0</p>
     </section>
 
   </main>
+
+  <script>
+    // Sinkron data login ke profil
+    var nama = localStorage.getItem('lingkunganku_nama');
+    var email = localStorage.getItem('lingkunganku_email');
+
+    if (nama) {
+      document.getElementById('profil-nama').textContent = nama;
+    }
+    if (email) {
+      document.getElementById('profil-kontak').textContent = email;
+    }
+
+    // Jika belum login, arahkan ke login
+    if (!nama) {
+      window.location.href = 'login.html';
+    }
+
+    document.getElementById('link-keluar').addEventListener('click', function (e) {
+      e.preventDefault();
+      localStorage.removeItem('lingkunganku_nama');
+      localStorage.removeItem('lingkunganku_email');
+      window.location.href = 'index.html';
+    });
+  </script>
 
 </body>
 </html>

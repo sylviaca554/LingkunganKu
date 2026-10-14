@@ -1,0 +1,341 @@
+/* ============================================================
+   LingkunganKU - Beranda (index.html)
+   css/index.css
+   Hanya berisi styling khusus halaman Beranda.
+   Tidak menduplikasi aturan dari css/style.css.
+   ============================================================ */
+
+
+/* ============================================================
+   1. LOGO — perbaiki <br> di dalam anchor nav utama
+   ============================================================ */
+header nav[aria-label="Navigasi Utama"] a br {
+  display: none;
+}
+
+header nav[aria-label="Navigasi Utama"] a img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+
+/* ============================================================
+   2. HERO / SAMBUTAN
+   ============================================================ */
+
+/* Placeholder figure saat gambar belum tersedia */
+section[aria-labelledby="sambutan-heading"] figure {
+  background-color: var(--color-secondary);
+  border-radius: var(--radius-lg);
+  min-height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: var(--space-4) 0 var(--space-2);
+  border: 2px dashed var(--color-accent);
+}
+
+section[aria-labelledby="sambutan-heading"] figure figcaption {
+  color: var(--color-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  text-align: center;
+  padding: var(--space-4);
+}
+
+/* Heading sambutan */
+#sambutan-heading {
+  font-size: var(--font-size-xl);
+  color: var(--color-primary-dark);
+  margin-bottom: var(--space-1);
+}
+
+/* Sub-heading sambutan */
+#sambutan-sub {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: 0;
+}
+
+/* Form cari laporan di hero — label */
+section[aria-labelledby="sambutan-heading"] form[role="search"] label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary-dark);
+  margin-top: 0;
+  margin-bottom: var(--space-1);
+}
+
+/* Input search di hero */
+section[aria-labelledby="sambutan-heading"] form[role="search"] input[type="search"] {
+  background-color: var(--color-white);
+  border-color: var(--color-primary-light);
+}
+
+section[aria-labelledby="sambutan-heading"] form[role="search"] input[type="search"]:focus {
+  border-color: var(--color-primary);
+}
+
+/* Tombol Cari Laporan */
+section[aria-labelledby="sambutan-heading"] form[role="search"] button[type="submit"] {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  border: none;
+  width: 100%;
+  margin-top: 0;
+  padding: var(--space-3) var(--space-5);
+  font-weight: var(--font-weight-semibold);
+}
+
+section[aria-labelledby="sambutan-heading"] form[role="search"] button[type="submit"]:hover {
+  background-color: var(--color-primary-dark);
+}
+
+
+/* ============================================================
+   3. SEKSI LAPORAN DI SEKITAR
+   ============================================================ */
+
+/* Header seksi: judul + statistik + link Lihat Semua */
+section[aria-labelledby="laporan-sekitar-heading"] > h2 {
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  margin-bottom: var(--space-1);
+}
+
+section[aria-labelledby="laporan-sekitar-heading"] > p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Link "Lihat Semua" */
+#link-lihat-semua {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-primary);
+  text-decoration: none;
+  margin-left: auto;
+}
+
+#link-lihat-semua:hover {
+  text-decoration: underline;
+}
+
+/* Hapus <hr> yang ada di antara <li> */
+section[aria-labelledby="laporan-sekitar-heading"] > ul > hr {
+  display: none;
+}
+
+/* List kartu laporan di beranda */
+section[aria-labelledby="laporan-sekitar-heading"] > ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: 0;
+}
+
+/* Kartu artikel laporan */
+section[aria-labelledby="laporan-sekitar-heading"] li article {
+  background-color: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: var(--space-3) var(--space-4);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+  overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+section[aria-labelledby="laporan-sekitar-heading"] li article:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+/* Wrapper <p> di dalam article */
+section[aria-labelledby="laporan-sekitar-heading"] li article > p {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-bottom: 0;
+  color: var(--color-text);
+  font-size: var(--font-size-base);
+  flex: 1;
+  min-width: 0;
+}
+
+/* Judul laporan (<b>) */
+section[aria-labelledby="laporan-sekitar-heading"] li article > p > b {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Gambar thumbnail di kartu */
+section[aria-labelledby="laporan-sekitar-heading"] li article img {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  float: none;
+  margin: 0;
+  display: block;
+}
+
+/* Info lokasi & waktu */
+section[aria-labelledby="laporan-sekitar-heading"] li article small {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Hapus clearfix — tidak diperlukan lagi karena sudah flexbox */
+section[aria-labelledby="laporan-sekitar-heading"] li article > p::after {
+  display: none;
+}
+
+
+/* ============================================================
+   4. BADGE STATUS — khusus struktur <small><strong> di beranda
+   ============================================================ */
+section[aria-labelledby="laporan-sekitar-heading"] a small strong {
+  display: inline-block;
+  padding: 2px var(--space-3);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+  margin-top: var(--space-1);
+}
+
+/* Warna badge per kata kunci teks */
+section[aria-labelledby="laporan-sekitar-heading"] a[href*="laporan-semua"] small strong {
+  background-color: var(--color-diproses-bg);
+  color: var(--color-diproses);
+}
+
+
+/* ============================================================
+   5. RESPONSIF KHUSUS BERANDA
+   ============================================================ */
+
+/* Mobile default */
+section[aria-labelledby="laporan-sekitar-heading"] > ul {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+}
+
+/* Tablet ke atas (≥ 600px) */
+@media (min-width: 600px) {
+
+  /* Form cari jadi satu baris */
+  section[aria-labelledby="sambutan-heading"] form[role="search"] {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: var(--space-2);
+  }
+
+  section[aria-labelledby="sambutan-heading"] form[role="search"] > label {
+    display: none;
+  }
+
+  section[aria-labelledby="sambutan-heading"] form[role="search"] input[type="search"] {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  section[aria-labelledby="sambutan-heading"] form[role="search"] button[type="submit"] {
+    width: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  /* Kartu laporan 2 kolom */
+  section[aria-labelledby="laporan-sekitar-heading"] > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (≥ 900px) */
+@media (min-width: 900px) {
+
+  /* Hero 2 kolom */
+  section[aria-labelledby="sambutan-heading"] {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    column-gap: var(--space-8);
+    align-items: start;
+  }
+
+  section[aria-labelledby="sambutan-heading"] #sambutan-heading {
+    grid-column: 1;
+    grid-row: 1;
+    font-size: var(--font-size-2xl);
+  }
+
+  section[aria-labelledby="sambutan-heading"] #sambutan-sub {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  section[aria-labelledby="sambutan-heading"] form[role="search"] {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  section[aria-labelledby="sambutan-heading"] figure {
+    grid-column: 2;
+    grid-row: 1 / 4;
+    margin: 0;
+    min-height: 200px;
+  }
+
+  /* Kartu laporan 4 kolom */
+  section[aria-labelledby="laporan-sekitar-heading"] > ul {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  /* Card vertikal di desktop agar lebih kompak */
+  section[aria-labelledby="laporan-sekitar-heading"] li article {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: var(--space-3);
+  }
+
+  section[aria-labelledby="laporan-sekitar-heading"] li article img {
+    width: 100%;
+    height: 100px;
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-2);
+  }
+
+  section[aria-labelledby="laporan-sekitar-heading"] li article > p > b {
+    white-space: normal;
+  }
+
+  section[aria-labelledby="laporan-sekitar-heading"] li article small {
+    white-space: normal;
+  }
+}

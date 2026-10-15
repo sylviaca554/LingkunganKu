@@ -2,114 +2,160 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Pengaturan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Pengaturan</title>
   <meta name="description" content="Halaman pengaturan profil pengguna LingkunganKU.">
+  <link rel="stylesheet" href="./css/profil.css">
 </head>
 <body>
 
-  <header>
-    <nav aria-label="Navigasi Utama">
-      <a href="index.html">
-        <img src="./assets/images/logo.png" alt="Logo LingkunganKU" width="40" height="40">
-        <br>LingkunganKU
-      </a>
-    </nav>
+<header>
+  <div class="navbar">
+    <a class="brand" href="index.html">
+      <img src="./assets/images/logo.png" alt="Logo LingkunganKU">
+      LingkunganKU
+    </a>
 
     <nav aria-label="Navigasi Halaman">
       <ul>
         <li><a href="index.html">Beranda</a></li>
         <li><a href="laporan-semua.html">Laporan</a></li>
-        <li><a href="buat-laporan.html">Buat</a></li>
+        <li><a href="buat-laporan.html">Buat Laporan</a></li>
         <li><a href="notifikasi.html">Notifikasi</a></li>
         <li><a href="profil.html" aria-current="page">Profil</a></li>
       </ul>
     </nav>
 
-    <h1>Pengaturan</h1>
-  </header>
+    <div class="nav-aksi">
+  <div class="nav-tamu" id="nav-tamu">
+    <a class="nav-masuk" href="login.html">Masuk</a>
+    <a class="nav-daftar" href="register.html">Daftar</a>
+  </div>
+  <a class="nav-user" id="nav-user" href="profil.html" hidden>
+    <img id="nav-user-foto" src="./assets/images/foto_profil.jpg" alt="">
+    <span id="nav-user-nama"></span>
+  </a>
+</div>
+</header>
 
   <main>
 
-    <!-- Info Profil -->
-    <section aria-labelledby="profil-heading">
-      <h2 id="profil-heading">Profil Pengguna</h2>
-      <table>
-        <tr>
-          <td>
-            <img src="./assets/images/foto_profil.jpg" alt="Foto profil" width="60" height="60">
-          </td>
-          <td>
-            <strong id="profil-nama">-</strong><br>
-            <small id="profil-kontak">-</small>
-          </td>
-        </tr>
-      </table>
-      <a href="#">&rsaquo;</a>
-    </section>
+    <!-- ===== Kolom kiri ===== -->
+    <aside class="sidebar">
 
-    <!-- Menu Pengaturan -->
-    <nav aria-label="Menu Pengaturan">
-      <hr>
-      <p>
-        <b><a href="#">Akun</a></b><br>
-        <small>Kelola akun</small>
-      </p>
-      <hr>
-      <p>
-        <b><a href="#">Bantuan</a></b><br>
-        <small>Pusat bantuan dan FAQ</small>
-      </p>
-      <hr>
-      <p>
-        <b><a href="#">Syarat dan ketentuan</a></b><br>
-        <small>Ketentuan penggunaan aplikasi</small>
-      </p>
-      <hr>
-      <p>
-        <b><a href="#">Tentang Lingkunganku</a></b><br>
-        <small>Versi aplikasi 1.0.0</small>
-      </p>
-      <hr>
-      <p>
-        <b><a href="#">Privasi dan Keamanan</a></b><br>
-        <small>Ubah informasi akun</small>
-      </p>
-      <hr>
-    </nav>
+      <!-- Info Profil -->
+      <section id="info-profil" aria-labelledby="profil-heading">
+        <h2 id="profil-heading">Profil Pengguna</h2>
+        <table>
+          <tr>
+            <td>
+              <img id="foto-sidebar" src="./assets/images/foto_profil.jpg" alt="Foto profil" width="52" height="52">
+            </td>
+            <td>
+              <strong id="profil-nama">-</strong><br>
+              <small id="profil-kontak">-</small>
+            </td>
+          </tr>
+        </table>
+        <a href="#" aria-label="Lihat profil">&rsaquo;</a>
+      </section>
 
-    <!-- Tombol Keluar -->
-    <section aria-label="Keluar Akun">
-      <a href="login.html" id="link-keluar">Keluar</a>
-      <p>Versi 1.0.0</p>
+      <!-- Menu Pengaturan -->
+      <nav class="menu" aria-label="Menu Pengaturan">
+        <hr>
+        <p class="aktif">
+          <a href="#" aria-current="true"><b>Akun</b><small>Kelola akun</small></a>
+        </p>
+        <hr>
+        <p>
+          <a href="#"><b>Bantuan</b><small>Pusat bantuan dan FAQ</small></a>
+        </p>
+        <hr>
+        <p>
+          <a href="#"><b>Syarat dan ketentuan</b><small>Ketentuan penggunaan aplikasi</small></a>
+        </p>
+        <hr>
+        <p>
+          <a href="#"><b>Tentang Lingkunganku</b><small>Versi aplikasi 1.0.0</small></a>
+        </p>
+        <hr>
+        <p>
+          <a href="#"><b>Privasi dan Keamanan</b><small>Ubah informasi akun</small></a>
+        </p>
+        <hr>
+      </nav>
+
+      <!-- Tombol Keluar -->
+      <section class="keluar" aria-label="Keluar Akun">
+        <a href="login.html" id="link-keluar">Keluar</a>
+        <p>Versi 1.0.0</p>
+      </section>
+
+    </aside>
+
+    <!-- ===== Kolom kanan: form akun ===== -->
+    <section class="content" aria-labelledby="akun-heading">
+      <h2 class="judul-akun" id="akun-heading">Akun</h2>
+
+      <form id="form-akun" novalidate>
+
+        <div class="blok">
+          <div class="foto">
+            <img id="foto-preview" src="./assets/images/foto_profil.jpg" alt="Foto profil saat ini">
+            <div>
+              <h3>Foto profil</h3>
+              <div class="aksi">
+                <input type="file" id="input-foto" accept="image/png,image/jpeg,image/gif" hidden>
+                <button type="button" class="btn utama" id="btn-unggah">Unggah foto</button>
+                <button type="button" class="btn" id="btn-hapus-foto">Hapus</button>
+              </div>
+              <small>Format PNG, JPEG, atau GIF, maksimal 2 MB.</small>
+            </div>
+          </div>
+
+          <div class="baris">
+            <div>
+              <label for="nama-depan">Nama depan</label>
+              <input type="text" id="nama-depan" autocomplete="given-name">
+            </div>
+            <div>
+              <label for="nama-belakang">Nama belakang</label>
+              <input type="text" id="nama-belakang" autocomplete="family-name">
+            </div>
+          </div>
+
+          <div class="baris satu">
+            <div>
+              <label for="email">Email</label>
+              <div class="email-wrap">
+                <input type="email" id="email" readonly autocomplete="email">
+                <button type="button" class="btn" id="btn-ubah-email">Ubah email</button>
+              </div>
+              <p class="hint">Dipakai untuk masuk ke akunmu.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="blok sandi">
+          <div>
+            <h3>Kata sandi</h3>
+            <p>Masuk dengan kata sandi, tanpa kode login sementara.</p>
+          </div>
+          <button type="button" class="btn" id="btn-ubah-sandi">Ubah kata sandi</button>
+        </div>
+
+        <div class="footer-form">
+          <span id="status" role="status" aria-live="polite"></span>
+          <button type="button" class="btn" id="btn-batal">Batal</button>
+          <button type="submit" class="btn utama">Simpan</button>
+        </div>
+
+      </form>
     </section>
 
   </main>
 
-  <script>
-    // Sinkron data login ke profil
-    var nama = localStorage.getItem('lingkunganku_nama');
-    var email = localStorage.getItem('lingkunganku_email');
-
-    if (nama) {
-      document.getElementById('profil-nama').textContent = nama;
-    }
-    if (email) {
-      document.getElementById('profil-kontak').textContent = email;
-    }
-
-    // Jika belum login, arahkan ke login
-    if (!nama) {
-      window.location.href = 'login.html';
-    }
-
-    document.getElementById('link-keluar').addEventListener('click', function (e) {
-      e.preventDefault();
-      localStorage.removeItem('lingkunganku_logged_in');
-      localStorage.removeItem('lingkunganku_nama');
-      localStorage.removeItem('lingkunganku_email');
-      window.location.href = 'index.html';
-    });
-  </script>
+  <script src="./js/profil.js"></script>
 
 </body>
 </html>

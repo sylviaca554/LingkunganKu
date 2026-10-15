@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Buat Laporan</title>
   <meta name="description" content="Formulir pembuatan laporan masalah lingkungan dalam 3 langkah: Jenis Laporan, Lokasi, dan Konfirmasi.">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/buat-laporan.css">
 </head>
 <body>
 
   <header>
-    <nav aria-label="Navigasi Kembali">
-      <a href="index.html">&larr; Kembali ke Beranda</a>
-    </nav>
+    <a class="brand-lingkunganku" href="index.html">LingkunganKU</a>
 
     <nav aria-label="Navigasi Halaman">
       <ul>
@@ -43,11 +43,18 @@
 
   <main>
 
-    <form action="#" method="post">
+    <section id="akses-laporan" aria-labelledby="akses-laporan-heading" role="alert" hidden>
+      <h1 id="akses-laporan-heading">Masuk untuk Membuat Laporan</h1>
+      <p>Anda harus masuk atau mendaftar akun terlebih dahulu sebelum membuat laporan.</p>
+      <a href="login.html" id="link-masuk">Masuk</a>
+      <a href="register.html" id="link-daftar">Daftar Akun</a>
+    </section>
+
+    <form id="form-laporan" action="#" method="post" hidden>
 
       <!-- ==================== LANGKAH 1: JENIS LAPORAN ==================== -->
       <section aria-labelledby="step1-heading">
-        <h1 id="step1-heading">Langkah 1: Jenis Laporan</h1>
+        <h1 id="step1-heading" tabindex="-1">Langkah 1: Jenis Laporan</h1>
 
         <!-- Pilih Kategori -->
         <fieldset>
@@ -108,12 +115,12 @@
           <p>Format yang diterima: WebP, PNG, JPG. Maksimal 5 MB.</p>
         </fieldset>
 
-        <button type="button">Selanjutnya</button>
+        <button type="button" data-step-next>Selanjutnya</button>
       </section>
 
       <!-- ==================== LANGKAH 2: LOKASI ==================== -->
-      <section aria-labelledby="step2-heading">
-        <h2 id="step2-heading">Langkah 2: Lokasi</h2>
+      <section aria-labelledby="step2-heading" hidden>
+        <h2 id="step2-heading" tabindex="-1">Langkah 2: Lokasi</h2>
 
         <fieldset>
           <legend>Pilih Lokasi</legend>
@@ -124,10 +131,9 @@
               <select id="kecamatan" name="kecamatan" required>
                 <option value="">-- Pilih Kecamatan --</option>
                 <option value="prambon">Prambon</option>
-                <option value="palmerah">Palmerah</option>
-                <option value="kebon-jeruk">Kebon Jeruk</option>
-                <option value="slipi">Slipi</option>
-                <option value="gambir">Gambir</option>
+                <option value="ngronggot">Ngronggot</option>
+                <option value="tanjunganom">Tanjunganom</option>
+                <option value="pace">Pace</option>
               </select>
             </li>
 
@@ -136,9 +142,9 @@
               <select id="kelurahan" name="kelurahan" required>
                 <option value="">-- Pilih Kelurahan --</option>
                 <option value="bandung">Bandung</option>
-                <option value="kemanggisan">Kemanggisan</option>
-                <option value="slipi">Slipi</option>
-                <option value="palmerah">Palmerah</option>
+                <option value="tanjungtani">Tanjungtani</option>
+                <option value="baleturi">Baleturi</option>
+                <option value="jetis">Jetis</option>
               </select>
             </li>
 
@@ -150,13 +156,13 @@
           </ol>
         </fieldset>
 
-        <a href="buat-laporan.html"><button type="button">Kembali</button></a>
-        <button type="button">Selanjutnya</button>
+        <button type="button" data-step-previous>Kembali</button>
+        <button type="button" data-step-next>Selanjutnya</button>
       </section>
 
       <!-- ==================== LANGKAH 3: KONFIRMASI ==================== -->
-      <section aria-labelledby="step3-heading">
-        <h2 id="step3-heading">Langkah 3: Konfirmasi Laporan</h2>
+      <section aria-labelledby="step3-heading" hidden>
+        <h2 id="step3-heading" tabindex="-1">Langkah 3: Konfirmasi Laporan</h2>
 
         <!-- Pratinjau Foto -->
         <section aria-labelledby="konfirmasi-foto-heading">
@@ -203,14 +209,114 @@
           </label>
         </fieldset>
 
-        <a href="buat-laporan.html"><button type="button">Kembali</button></a>
+        <button type="button" data-step-previous>Kembali</button>
         <button type="submit">Kirim</button>
 
       </section>
 
     </form>
 
+    <section id="laporan-berhasil" aria-labelledby="laporan-berhasil-heading" aria-live="polite" hidden>
+      <div class="laporan-berhasil-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" focusable="false">
+          <path d="m5 12 4 4L19 6"></path>
+        </svg>
+      </div>
+      <h1 id="laporan-berhasil-heading" tabindex="-1">Laporan berhasil dibuat</h1>
+      <p>Saat ini laporan sedang ditinjau. Tunggu beberapa saat lagi.</p>
+      <nav aria-label="Navigasi setelah laporan berhasil dikirim">
+        <a href="index.html">Kembali ke Beranda</a>
+        <a href="notifikasi.html">Cek Notifikasi</a>
+      </nav>
+    </section>
+
   </main>
+
+  <script>
+    var formLaporan = document.getElementById('form-laporan');
+    var aksesLaporan = document.getElementById('akses-laporan');
+    var laporanBerhasil = document.getElementById('laporan-berhasil');
+    var navigasiLangkah = document.querySelector(
+      'nav[aria-label="Langkah pengisian laporan"]'
+    );
+    var langkahLaporan = Array.from(formLaporan.querySelectorAll(':scope > section'));
+    var indikatorLangkah = Array.from(document.querySelectorAll(
+      'nav[aria-label="Langkah pengisian laporan"] li'
+    ));
+    var langkahAktif = 0;
+
+    function tampilkanLangkah(index) {
+      langkahAktif = index;
+
+      langkahLaporan.forEach(function (langkah, langkahIndex) {
+        langkah.hidden = langkahIndex !== langkahAktif;
+        if (langkahIndex === langkahAktif) {
+          langkah.querySelector('h1, h2').focus();
+        }
+      });
+
+      indikatorLangkah.forEach(function (indikator, langkahIndex) {
+        if (langkahIndex === langkahAktif) {
+          indikator.setAttribute('aria-current', 'step');
+        } else {
+          indikator.removeAttribute('aria-current');
+        }
+      });
+    }
+
+    formLaporan.addEventListener('click', function (event) {
+      var tombol = event.target.closest('button');
+      if (!tombol) {
+        return;
+      }
+
+      if (tombol.hasAttribute('data-step-next')) {
+        var langkah = langkahLaporan[langkahAktif];
+        var inputTidakValid = Array.from(
+          langkah.querySelectorAll('input, select, textarea')
+        ).find(function (input) {
+          return !input.checkValidity();
+        });
+
+        if (inputTidakValid) {
+          inputTidakValid.reportValidity();
+          return;
+        }
+
+        indikatorLangkah[langkahAktif].setAttribute('data-completed', 'true');
+        tampilkanLangkah(langkahAktif + 1);
+      } else if (tombol.hasAttribute('data-step-previous')) {
+        tampilkanLangkah(langkahAktif - 1);
+      }
+    });
+
+    formLaporan.addEventListener('submit', function (event) {
+      event.preventDefault();
+      formLaporan.hidden = true;
+      laporanBerhasil.hidden = false;
+      document.body.classList.add('laporan-terkirim');
+      document.getElementById('laporan-berhasil-heading').focus();
+    });
+
+    function periksaAksesLaporan() {
+      var sudahLogin = localStorage.getItem('lingkunganku_logged_in') === 'true'
+        && Boolean(localStorage.getItem('lingkunganku_nama'))
+        && Boolean(localStorage.getItem('lingkunganku_email'));
+
+      document.body.classList.toggle('laporan-perlu-login', !sudahLogin);
+      formLaporan.hidden = !sudahLogin;
+      aksesLaporan.hidden = sudahLogin;
+      navigasiLangkah.setAttribute('aria-hidden', String(!sudahLogin));
+
+      if (!sudahLogin) {
+        localStorage.setItem('lingkunganku_redirect', 'buat-laporan.html');
+      }
+    }
+
+    periksaAksesLaporan();
+    window.addEventListener('pageshow', periksaAksesLaporan);
+    window.addEventListener('storage', periksaAksesLaporan);
+  </script>
 
 </body>
 </html>

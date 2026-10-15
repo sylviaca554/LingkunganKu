@@ -331,7 +331,11 @@
   </div>
 
   <script>
-    if (localStorage.getItem('lingkunganku_logged_in') === 'true') {
+    var sudahLogin = localStorage.getItem('lingkunganku_logged_in') === 'true'
+      && Boolean(localStorage.getItem('lingkunganku_nama'))
+      && Boolean(localStorage.getItem('lingkunganku_email'));
+
+    if (sudahLogin) {
       window.location.href = 'index.html';
     }
 
@@ -420,7 +424,13 @@
       localStorage.setItem('lingkunganku_nama', nama);
       localStorage.setItem('lingkunganku_email', email);
 
-      window.location.href = 'index.html';
+      var redirect = localStorage.getItem('lingkunganku_redirect');
+      if (redirect) {
+        localStorage.removeItem('lingkunganku_redirect');
+        window.location.href = redirect;
+      } else {
+        window.location.href = 'index.html';
+      }
     });
   </script>
 

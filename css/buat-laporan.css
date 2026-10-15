@@ -1,0 +1,434 @@
+body > header {
+  width: 100%;
+  max-width: none;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+body.laporan-perlu-login > header nav[aria-label="Langkah pengisian laporan"] {
+  visibility: hidden;
+}
+
+.brand-lingkunganku {
+  display: inline-flex;
+  min-height: 2rem;
+  align-items: center;
+  padding-left: 3rem;
+  color: var(--color-primary);
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
+  text-decoration: none;
+}
+
+.brand-lingkunganku:hover {
+  color: var(--color-primary-dark);
+  text-decoration: none;
+}
+
+header nav[aria-label="Langkah pengisian laporan"] {
+  margin-top: var(--space-4);
+}
+
+header nav[aria-label="Langkah pengisian laporan"] ol {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-3);
+  list-style: none;
+}
+
+header nav[aria-label="Langkah pengisian laporan"] li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 0 var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+header nav[aria-label="Langkah pengisian laporan"] li strong {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-full);
+  background-color: var(--color-white);
+}
+
+header nav[aria-label="Langkah pengisian laporan"] li[aria-current="step"] {
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+}
+
+header nav[aria-label="Langkah pengisian laporan"] li[aria-current="step"] strong {
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+header nav[aria-label="Langkah pengisian laporan"] li[data-completed="true"] strong {
+  color: var(--color-white);
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+}
+
+#akses-laporan:not([hidden]),
+#form-laporan:not([hidden]) > section {
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+}
+
+#akses-laporan:not([hidden]) {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: var(--space-5);
+  background-color: var(--color-white);
+}
+
+#akses-laporan h1 {
+  margin-bottom: var(--space-2);
+  font-size: var(--font-size-xl);
+  color: var(--color-text);
+}
+
+#form-laporan > section > h1,
+#form-laporan > section > h2 {
+  color: var(--color-primary-dark);
+}
+
+#akses-laporan > p {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+}
+
+#akses-laporan > a {
+  display: inline-block;
+  margin: var(--space-2) var(--space-2) 0 0;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+}
+
+#akses-laporan > a:first-of-type {
+  color: var(--color-white);
+  background-color: var(--color-primary);
+}
+
+#akses-laporan > a:last-of-type {
+  color: var(--color-primary);
+  background-color: var(--color-white);
+}
+
+#akses-laporan > a:hover {
+  text-decoration: none;
+  box-shadow: var(--shadow-sm);
+}
+
+#laporan-berhasil:not([hidden]) {
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: var(--space-6);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-white);
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+}
+
+.laporan-berhasil-icon {
+  display: grid;
+  width: 5rem;
+  height: 5rem;
+  margin: 0 auto var(--space-5);
+  place-items: center;
+  border-radius: var(--radius-full);
+  background-color: var(--color-primary-bg);
+}
+
+.laporan-berhasil-icon svg {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.5;
+}
+
+#laporan-berhasil h1 {
+  margin-bottom: var(--space-2);
+  color: var(--color-primary-dark);
+  font-size: var(--font-size-xl);
+}
+
+#laporan-berhasil p {
+  margin-bottom: var(--space-5);
+  color: var(--color-text-secondary);
+}
+
+#laporan-berhasil nav {
+  display: grid;
+  gap: var(--space-2);
+}
+
+#laporan-berhasil nav a {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-primary);
+  border-radius: var(--radius-full);
+  color: var(--color-primary);
+  font-weight: var(--font-weight-semibold);
+  text-decoration: none;
+}
+
+#laporan-berhasil nav a:first-child {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+#laporan-berhasil nav a:hover {
+  box-shadow: var(--shadow-sm);
+}
+
+body.laporan-terkirim > header nav[aria-label="Langkah pengisian laporan"] {
+  display: none;
+}
+
+body.laporan-terkirim > main {
+  display: flex;
+  min-height: calc(100vh - 8rem);
+  align-items: center;
+}
+
+body.laporan-perlu-login > header {
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+body.laporan-perlu-login > main {
+  min-height: calc(100vh - 8.25rem);
+  padding-top: 4.5rem;
+}
+
+#form-laporan:not([hidden]) > section {
+  margin-bottom: var(--space-5);
+}
+
+#form-laporan fieldset {
+  padding: var(--space-5);
+  background-color: #fff;
+}
+
+#form-laporan fieldset ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+  gap: var(--space-2);
+  list-style: none;
+}
+
+#form-laporan fieldset ul label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  padding: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+}
+
+#form-laporan fieldset ul label:has(input:checked) {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
+}
+
+#form-laporan input[type="radio"],
+#form-laporan input[type="checkbox"] {
+  accent-color: var(--color-primary);
+}
+
+#form-laporan input[type="radio"] {
+  width: auto;
+}
+
+#form-laporan label[for],
+#form-laporan fieldset ol label {
+  margin-top: var(--space-3);
+}
+
+#form-laporan fieldset ol {
+  padding-left: var(--space-5);
+}
+
+#form-laporan fieldset ol li {
+  padding-left: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+#form-laporan fieldset ol li:last-child {
+  margin-bottom: 0;
+}
+
+#form-laporan fieldset > p {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
+#form-laporan figure {
+  min-height: 7rem;
+  display: grid;
+  place-items: center;
+  padding: var(--space-4);
+  border: 2px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-bg);
+}
+
+#form-laporan table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+#form-laporan caption {
+  margin-bottom: var(--space-2);
+  color: var(--color-text-muted);
+  text-align: left;
+}
+
+#form-laporan th,
+#form-laporan td {
+  padding: var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  vertical-align: top;
+}
+
+#form-laporan th {
+  width: 9rem;
+  color: var(--color-text-secondary);
+}
+
+#form-laporan input[type="checkbox"] {
+  width: auto;
+  margin-right: var(--space-2);
+}
+
+#form-laporan fieldset label[for="persetujuan"] {
+  display: inline;
+  margin: 0;
+}
+
+#form-laporan > section > a > button {
+  width: auto;
+  margin-right: var(--space-2);
+}
+
+#form-laporan > section > button[type="submit"] {
+  width: 100%;
+}
+
+#form-laporan > section > button[data-step-next] {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+}
+
+#form-laporan > section > button[data-step-next]:hover {
+  background-color: var(--color-primary-dark);
+}
+
+@media (max-width: 599px) {
+  header nav[aria-label="Langkah pengisian laporan"] ol {
+    justify-content: flex-start;
+    gap: 0;
+  }
+
+  header nav[aria-label="Langkah pengisian laporan"] li {
+    flex: 1;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-2) 0;
+    text-align: center;
+  }
+
+  #akses-laporan:not([hidden]),
+  #form-laporan:not([hidden]) > section {
+    padding: var(--space-4);
+  }
+
+  #akses-laporan:not([hidden]) {
+    padding: var(--space-4);
+  }
+
+  #laporan-berhasil:not([hidden]) {
+    padding: var(--space-4);
+  }
+
+  body.laporan-perlu-login > header {
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+
+  body.laporan-perlu-login > main {
+    min-height: calc(100vh - 6rem);
+    padding-top: var(--space-8);
+  }
+
+  #form-laporan th,
+  #form-laporan td {
+    padding: var(--space-2);
+  }
+
+  #form-laporan th {
+    width: 6rem;
+  }
+
+  #form-laporan > section > a > button,
+  #form-laporan > section > button[type="submit"] {
+    width: 100%;
+    margin-right: 0;
+  }
+}
+
+@media (min-width: 900px) {
+  body > header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: var(--space-6);
+  }
+
+  body > header > .brand-lingkunganku {
+    grid-column: 1;
+    grid-row: 1;
+    justify-self: start;
+  }
+
+  body > header nav[aria-label="Navigasi Halaman"] {
+    grid-column: 2;
+    grid-row: 1;
+    min-width: max-content;
+  }
+
+  body > header nav[aria-label="Navigasi Halaman"] ul {
+    flex-wrap: nowrap;
+  }
+
+  body > header nav[aria-label="Langkah pengisian laporan"] {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    margin-top: 0;
+  }
+
+  body > header nav[aria-label="Langkah pengisian laporan"] ol {
+    gap: var(--space-1);
+    padding: 0;
+  }
+}

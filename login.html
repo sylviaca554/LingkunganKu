@@ -330,7 +330,11 @@
   <script>
     var ADMIN = { email: 'admin@lingkunganku.id', password: 'Admin123!', nama: 'Admin' };
 
-    if (localStorage.getItem('lingkunganku_logged_in') === 'true') {
+    var sudahLogin = localStorage.getItem('lingkunganku_logged_in') === 'true'
+      && Boolean(localStorage.getItem('lingkunganku_nama'))
+      && Boolean(localStorage.getItem('lingkunganku_email'));
+
+    if (sudahLogin) {
       window.location.href = 'index.html';
     }
 

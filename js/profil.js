@@ -128,17 +128,3 @@ document.getElementById('link-keluar').addEventListener('click', function (e) {
   window.location.href = 'index.html';
 });
 
-// Navbar: tampilkan pengguna jika sudah login, sembunyikan Masuk/Daftar
-(function () {
-  var login = localStorage.getItem('lingkunganku_logged_in') === 'true'
-    && localStorage.getItem('lingkunganku_nama');
-  if (!login) return;
-
-  document.getElementById('nav-tamu').hidden = true;
-  var user = document.getElementById('nav-user');
-  user.hidden = false;
-  document.getElementById('nav-user-nama').textContent =
-    localStorage.getItem('lingkunganku_nama').split(' ')[0];
-  document.getElementById('nav-user-foto').src =
-    localStorage.getItem('lingkunganku_foto') || './assets/images/foto_profil.jpg';
-})();

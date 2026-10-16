@@ -2,66 +2,105 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Laporan Ditolak</title>
-  <meta name="description" content="Daftar laporan yang ditolak karena tidak memenuhi syarat pelaporan.">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/laporan.css">
+  <title>LingkunganKU - Laporan Ditolak</title>
+  <meta name="description" content="Daftar laporan yang ditolak karena tidak memenuhi syarat.">
 </head>
-<body>
+<body class="page-laporan">
 
   <header class="site-header"></header>
   <script src="./js/navbar.js"></script>
 
-
   <main>
+    <div class="laporan-page">
 
-    <section aria-labelledby="ditolak-heading">
-      <h1 id="ditolak-heading">Laporan</h1>
-      <p>Laporan yang tidak dapat diproses karena tidak memenuhi syarat atau informasi tidak lengkap.</p>
+      <div class="laporan-page-header">
+        <div class="laporan-page-header-text">
+          <h1>Laporan Lingkungan</h1>
+          <p>Laporan yang tidak dapat diproses karena tidak memenuhi syarat atau informasi tidak lengkap.</p>
+        </div>
+        <a href="buat-laporan.html" class="laporan-btn-buat">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+               fill="none" stroke="currentColor" stroke-width="2.5"
+               stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/>
+          </svg>
+          Buat Laporan
+        </a>
+      </div>
 
-      <!-- Filter Tab -->
-      <nav aria-label="Filter Status Laporan">
-        <ul>
-          <li><a href="laporan-semua.html">Semua</a></li>
-          <li><a href="laporan-diproses.html">Diproses</a></li>
-          <li><a href="laporan-selesai.html">Selesai</a></li>
-          <li><a href="laporan-ditolak.html" aria-current="page">Ditolak</a></li>
-        </ul>
-      </nav>
+      <div class="laporan-controls">
+        <nav aria-label="Filter Status Laporan">
+          <ul class="laporan-filter-tabs">
+            <li><a href="laporan-semua.html">Semua</a></li>
+            <li><a href="laporan-diproses.html">Diproses</a></li>
+            <li><a href="laporan-selesai.html">Selesai</a></li>
+            <li><a href="laporan-ditolak.html" aria-current="page">Ditolak</a></li>
+          </ul>
+        </nav>
+        <form class="laporan-search-form" action="#" method="get" role="search">
+          <label for="cari-ditolak" class="sr-only">Cari Laporan</label>
+          <div class="laporan-search-wrap">
+            <svg class="laporan-search-icon" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search" id="cari-ditolak" name="q" class="laporan-search-input"
+                   placeholder="Cari laporan berdasarkan judul atau kata kunci...">
+          </div>
+          <button type="submit" class="laporan-search-btn">Cari</button>
+        </form>
+      </div>
 
-      <!-- Pencarian -->
-      <form action="#" method="get" role="search">
-        <fieldset>
-          <legend>Cari Laporan Ditolak</legend>
-          <label for="cari-ditolak">Kata kunci</label>
-          <input type="search" id="cari-ditolak" name="q" placeholder="Cari laporan...">
-          <button type="submit">Cari</button>
-        </fieldset>
-      </form>
+      <ul class="laporan-list" aria-label="Daftar laporan yang ditolak">
 
-      <!-- Daftar Laporan Ditolak -->
-      <ul aria-label="Daftar laporan yang ditolak">
         <li>
-          <article>
-            <h2>Sampah Menumpuk</h2>
-            <p>Kategori: Kebersihan</p>
-            <p>2 hari yang lalu</p>
-            <p>Alasan penolakan: Foto tidak jelas dan lokasi tidak terverifikasi.</p>
-            <a href="detail-laporan.html"><strong>Ditolak</strong></a>
+          <article class="laporan-item-card">
+            <div class="laporan-item-body">
+              <h2 class="laporan-item-title">Sampah Menumpuk</h2>
+              <p class="laporan-item-kategori">Kebersihan</p>
+              <p class="laporan-item-meta">2 hari yang lalu</p>
+              <p class="laporan-item-alasan">Alasan: Foto tidak jelas dan lokasi tidak terverifikasi.</p>
+              <a href="detail-laporan.html" class="laporan-item-badge badge--ditolak">Ditolak</a>
+            </div>
+            <div class="laporan-item-img-wrap">
+              <img src="./assets/images/laporan-sampah-menumpuk.webp"
+                   alt="Foto laporan sampah menumpuk" class="laporan-item-img" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-item-placeholder" aria-hidden="true">
+                <span class="laporan-item-placeholder-text">Foto Laporan</span>
+              </div>
+            </div>
           </article>
         </li>
+
         <li>
-          <article>
-            <h2>Selokan Tersumbat</h2>
-            <p>Kategori: Sanitasi</p>
-            <p>4 hari yang lalu</p>
-            <p>Alasan penolakan: Duplikasi laporan yang sudah ada sebelumnya.</p>
-            <a href="detail-laporan.html"><strong>Ditolak</strong></a>
+          <article class="laporan-item-card">
+            <div class="laporan-item-body">
+              <h2 class="laporan-item-title">Selokan Tersumbat</h2>
+              <p class="laporan-item-kategori">Sanitasi</p>
+              <p class="laporan-item-meta">4 hari yang lalu</p>
+              <p class="laporan-item-alasan">Alasan: Duplikasi laporan yang sudah ada sebelumnya.</p>
+              <a href="detail-laporan.html" class="laporan-item-badge badge--ditolak">Ditolak</a>
+            </div>
+            <div class="laporan-item-img-wrap">
+              <img src="./assets/images/laporan-selokan-tersumbat.webp"
+                   alt="Foto laporan selokan tersumbat" class="laporan-item-img" loading="lazy"
+                   onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-item-placeholder" aria-hidden="true">
+                <span class="laporan-item-placeholder-text">Foto Laporan</span>
+              </div>
+            </div>
           </article>
         </li>
+
       </ul>
-    </section>
-
+    </div>
   </main>
 
 </body>

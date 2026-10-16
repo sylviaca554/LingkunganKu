@@ -85,3 +85,62 @@ body > header.site-header {
   transform: none !important;
   box-sizing: border-box !important;
 }
+
+/* ── Hamburger button (disuntikkan oleh navbar.js) ── */
+.site-header .nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 8px;
+  color: #334155;
+  transition: background 0.2s;
+  align-items: center;
+  justify-content: center;
+  justify-self: end;
+}
+
+.site-header .nav-hamburger:hover {
+  background: rgba(37,99,235,0.08);
+}
+
+@media (max-width: 767px) {
+  .site-header .navbar {
+    grid-template-columns: 1fr auto;
+    flex-wrap: wrap;
+  }
+
+  .site-header .nav-hamburger {
+    display: flex;
+  }
+
+  .site-header .nav-aksi {
+    display: none;
+  }
+
+  .site-header nav[aria-label="Menu Situs"] {
+    display: none;
+    grid-column: 1 / -1;
+    order: 4;
+    width: 100%;
+  }
+
+  .site-header nav[aria-label="Menu Situs"].open {
+    display: block;
+  }
+
+  .site-header nav[aria-label="Menu Situs"] ul {
+    flex-direction: column;
+    gap: 4px;
+    padding: 8px 0;
+  }
+
+  .site-header nav[aria-label="Menu Situs"].open + .nav-aksi {
+    display: flex;
+    grid-column: 1 / -1;
+    order: 5;
+    padding: 8px 0;
+    justify-content: center;
+  }
+}

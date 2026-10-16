@@ -5,113 +5,306 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="./css/base.css">
   <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/navbar.css">
   <link rel="stylesheet" href="./css/index.css">
   <title>LingkunganKU - Beranda</title>
-  <meta name="description" content="Aplikasi pelaporan masalah lingkungan di sekitar Anda.">
-  <link rel="stylesheet" href="./css/navbar.css">
+  <meta name="description" content="Aplikasi pelaporan dan pemantauan masalah lingkungan masyarakat.">
 </head>
-<body>
+<body class="page-beranda">
 
+  <!-- NAVBAR — diisi oleh navbar.js -->
   <header class="site-header"></header>
   <script src="./js/navbar.js"></script>
 
+  <main id="main-content">
 
-  <main>
+    <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
+    <section class="hero" aria-labelledby="sambutan-heading">
 
-    <!-- Hero / Sambutan: berubah sesuai status login -->
-    <section aria-labelledby="sambutan-heading">
-      <h1 id="sambutan-heading">Selamat Datang di LingkunganKU</h1>
-      <p id="sambutan-sub">Laporkan masalah lingkungan di sekitar Anda.</p>
-      <figure>
-        <figcaption>Ilustrasi lingkungan hijau bersih</figcaption>
-      </figure>
+      <!-- Lapisan parallax kota (CSS) -->
+      <div class="hero-parallax" aria-hidden="true">
+        <div class="hero-layer hero-layer--sky"       data-speed="0.08"></div>
+        <div class="hero-layer hero-layer--cloud1"    data-speed="0.12"></div>
+        <div class="hero-layer hero-layer--cloud2"    data-speed="0.18"></div>
+        <div class="hero-layer hero-layer--buildings" data-speed="0.28"></div>
+        <div class="hero-layer hero-layer--trees"     data-speed="0.46"></div>
+        <div class="hero-layer hero-layer--road"      data-speed="0.65"></div>
+        <div class="hero-layer hero-layer--overlay"></div>
+      </div>
 
-      <!-- Form Cari Laporan -->
-      <form action="cari-laporan.html" method="get" role="search">
-        <label for="cari-beranda">Cari Laporan</label>
-        <input type="search" id="cari-beranda" name="q" placeholder="Cari laporan, misal: jalan berlubang, Palmerah...">
-        <button type="submit">Cari Laporan</button>
-      </form>
+      <!-- Konten tengah -->
+      <div class="hero-content">
+
+        <span class="hero-label">🌿 Bersama Menjaga Lingkungan</span>
+
+        <h1 class="hero-title" id="sambutan-heading">
+          Selamat Datang di<br>
+          <span class="hero-title-accent">LingkunganKU</span>
+        </h1>
+
+        <p class="hero-desc" id="sambutan-sub">
+          Bersama kita wujudkan lingkungan yang lebih bersih, sehat, dan nyaman.
+        </p>
+
+        <!-- Form pencarian -->
+        <form class="hero-search" action="cari-laporan.html" method="get" role="search">
+          <label for="cari-beranda" class="sr-only">Cari laporan</label>
+          <div class="hero-search-wrap">
+            <svg class="hero-search-icon" xmlns="http://www.w3.org/2000/svg"
+                 width="20" height="20" viewBox="0 0 24 24" fill="none"
+                 stroke="currentColor" stroke-width="2"
+                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input
+              type="search"
+              id="cari-beranda"
+              name="q"
+              class="hero-search-input"
+              placeholder="Cari laporan, misal: jalan berlubang, sampah, Palmerah..."
+              autocomplete="off">
+            <button type="submit" class="hero-search-btn">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                   fill="none" stroke="currentColor" stroke-width="2.5"
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
+                   style="margin-right:6px;vertical-align:middle">
+                <circle cx="11" cy="11" r="8"/>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+              </svg>
+              Cari Laporan
+            </button>
+          </div>
+        </form>
+
+        <!-- Manfaat -->
+        <ul class="hero-benefits" aria-label="Manfaat LingkunganKU">
+          <li class="hero-benefit">
+            <span class="hero-benefit-icon" aria-hidden="true">🌱</span>
+            <span>Lingkungan Lebih Bersih</span>
+          </li>
+          <li class="hero-benefit">
+            <span class="hero-benefit-icon" aria-hidden="true">🤝</span>
+            <span>Warga Lebih Peduli</span>
+          </li>
+          <li class="hero-benefit">
+            <span class="hero-benefit-icon" aria-hidden="true">⚡</span>
+            <span>Laporan Lebih Cepat</span>
+          </li>
+        </ul>
+
+      </div>
     </section>
 
-    <!-- Laporan di Sekitar -->
-    <section aria-labelledby="laporan-sekitar-heading">
-      <h2 id="laporan-sekitar-heading">Laporan di Sekitar</h2>
-      <p>1.302 Terkirim &bull; 3 &nbsp;|&nbsp; <a href="#" id="link-lihat-semua">Lihat Semua</a></p>
 
-      <ul>
+    <!-- ═══════════════════════════════ LAPORAN DI SEKITAR ═══════════════════════════════ -->
+    <section class="laporan-section" aria-labelledby="laporan-sekitar-heading">
+
+      <div class="laporan-header">
+        <div>
+          <h2 class="laporan-title" id="laporan-sekitar-heading">Laporan di Sekitar</h2>
+          <p class="laporan-meta">Temukan dan pantau masalah lingkungan di sekitar Anda.</p>
+        </div>
+        <a href="#" id="link-lihat-semua" class="laporan-lihat-semua">Lihat Semua →</a>
+      </div>
+
+      <ul class="laporan-grid" aria-label="Daftar laporan terkini">
+
+        <!-- Kartu 1 -->
         <li>
-          <article>
-            <p>
-              <b>Jalan berlubang</b><br>
-              <img src="./assets/images/laporan-jalan-berlubang.webp" alt="Foto laporan jalan berlubang" width="80">
-              <br><small>Jl. Kemanggisan Utama, Palmerah &bull; 2 Jam yang lalu</small><br>
-              <a href="laporan-semua.html"><small><strong>Diproses</strong></small></a>
-            </p>
+          <article class="laporan-card">
+            <div class="laporan-card-img-wrap">
+              <img
+                src="./assets/images/laporan-jalan-berlubang.webp"
+                alt="Foto jalan berlubang di Palmerah"
+                class="laporan-card-img"
+                loading="lazy"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-card-img-fallback" aria-hidden="true">
+                <span class="laporan-card-img-fallback-icon">🛣️</span>
+                <span class="laporan-card-img-fallback-text">Foto Laporan</span>
+              </div>
+            </div>
+            <div class="laporan-card-body">
+              <h3 class="laporan-card-title">Jalan Berlubang</h3>
+              <p class="laporan-card-lokasi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                Jl. Kemanggisan Utama, Palmerah
+              </p>
+              <p class="laporan-card-waktu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                2 Jam yang lalu
+              </p>
+              <p class="laporan-card-desc">Terdapat lubang cukup besar di tengah jalan yang membahayakan pengendara.</p>
+              <a href="detail-laporan.html" class="laporan-card-badge badge--diproses">⏳ Diproses</a>
+            </div>
           </article>
         </li>
-        <hr>
+
+        <!-- Kartu 2 -->
         <li>
-          <article>
-            <p>
-              <b>Sampah Menumpuk</b><br>
-              <img src="./assets/images/laporan-sampah-menumpuk.webp" alt="Foto laporan sampah menumpuk" width="80">
-              <br><small>Jl. Anggrek No.7, Slipi &bull; 5 Jam yang lalu</small><br>
-              <a href="laporan-semua.html"><small><strong>Diproses</strong></small></a>
-            </p>
+          <article class="laporan-card">
+            <div class="laporan-card-img-wrap">
+              <img
+                src="./assets/images/laporan-sampah-menumpuk.webp"
+                alt="Foto sampah menumpuk di Slipi"
+                class="laporan-card-img"
+                loading="lazy"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-card-img-fallback" aria-hidden="true">
+                <span class="laporan-card-img-fallback-icon">🗑️</span>
+                <span class="laporan-card-img-fallback-text">Foto Laporan</span>
+              </div>
+            </div>
+            <div class="laporan-card-body">
+              <h3 class="laporan-card-title">Sampah Menumpuk</h3>
+              <p class="laporan-card-lokasi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                Jl. Anggrek No.7, Slipi
+              </p>
+              <p class="laporan-card-waktu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                5 Jam yang lalu
+              </p>
+              <p class="laporan-card-desc">Sampah menumpuk di pinggir jalan sudah beberapa hari dan menimbulkan bau.</p>
+              <a href="detail-laporan.html" class="laporan-card-badge badge--diproses">⏳ Diproses</a>
+            </div>
           </article>
         </li>
-        <hr>
+
+        <!-- Kartu 3 -->
         <li>
-          <article>
-            <p>
-              <b>Lampu Jalan Mati</b><br>
-              <img src="./assets/images/laporan-lampu-jalan-mati.webp" alt="Foto laporan lampu jalan mati" width="80">
-              <br><small>Jl. Panjang, Kebon Jeruk &bull; 8 Jam yang lalu</small><br>
-              <a href="laporan-semua.html"><small><strong>Selesai</strong></small></a>
-            </p>
+          <article class="laporan-card">
+            <div class="laporan-card-img-wrap">
+              <img
+                src="./assets/images/laporan-lampu-jalan-mati.webp"
+                alt="Foto lampu jalan mati di Kebon Jeruk"
+                class="laporan-card-img"
+                loading="lazy"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-card-img-fallback" aria-hidden="true">
+                <span class="laporan-card-img-fallback-icon">💡</span>
+                <span class="laporan-card-img-fallback-text">Foto Laporan</span>
+              </div>
+            </div>
+            <div class="laporan-card-body">
+              <h3 class="laporan-card-title">Lampu Jalan Mati</h3>
+              <p class="laporan-card-lokasi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                Jl. Panjang, Kebon Jeruk
+              </p>
+              <p class="laporan-card-waktu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                8 Jam yang lalu
+              </p>
+              <p class="laporan-card-desc">Lampu jalan di depan komplek tidak menyala sejak malam kemarin.</p>
+              <a href="detail-laporan.html" class="laporan-card-badge badge--selesai">✅ Selesai</a>
+            </div>
           </article>
         </li>
-        <hr>
+
+        <!-- Kartu 4 -->
         <li>
-          <article>
-            <p>
-              <b>Selokan Tersumbat</b><br>
-              <img src="./assets/images/laporan-selokan-tersumbat.webp" alt="Foto laporan selokan tersumbat" width="80">
-              <br><small>Jl. Rawa Belong, Palmerah &bull; 12 Jam yang lalu</small><br>
-              <a href="laporan-semua.html"><small><strong>Menunggu</strong></small></a>
-            </p>
+          <article class="laporan-card">
+            <div class="laporan-card-img-wrap">
+              <img
+                src="./assets/images/laporan-selokan-tersumbat.webp"
+                alt="Foto selokan tersumbat di Palmerah"
+                class="laporan-card-img"
+                loading="lazy"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+              <div class="laporan-card-img-fallback" aria-hidden="true">
+                <span class="laporan-card-img-fallback-icon">🌊</span>
+                <span class="laporan-card-img-fallback-text">Foto Laporan</span>
+              </div>
+            </div>
+            <div class="laporan-card-body">
+              <h3 class="laporan-card-title">Selokan Tersumbat</h3>
+              <p class="laporan-card-lokasi">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+                  <circle cx="12" cy="9" r="2.5"/>
+                </svg>
+                Jl. Rawa Belong, Palmerah
+              </p>
+              <p class="laporan-card-waktu">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24"
+                     fill="none" stroke="currentColor" stroke-width="2.5"
+                     stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="12" cy="12" r="10"/>
+                  <polyline points="12 6 12 12 16 14"/>
+                </svg>
+                12 Jam yang lalu
+              </p>
+              <p class="laporan-card-desc">Selokan tersumbat oleh sampah dan daun kering sehingga air meluap.</p>
+              <a href="detail-laporan.html" class="laporan-card-badge badge--menunggu">⏰ Menunggu</a>
+            </div>
           </article>
         </li>
+
       </ul>
     </section>
 
   </main>
 
+  <!-- Parallax JS -->
+  <script src="./js/hero-parallax.js"></script>
 
-
+  <!-- Beranda JS -->
   <script>
+    // Personalisasi setelah login
     var nama = localStorage.getItem('lingkunganku_nama');
-    var email = localStorage.getItem('lingkunganku_email');
-
     if (nama) {
-      // Sudah login: ubah sambutan
-      document.getElementById('sambutan-heading').textContent = 'Halo, ' + nama + '!';
-      document.getElementById('sambutan-sub').textContent = '';
-
-      // Sembunyikan tombol Masuk/Daftar
-      document.getElementById('nav-akun').innerHTML = '';
+      var el = document.getElementById('sambutan-heading');
+      if (el) {
+        el.innerHTML = 'Halo, <span class="hero-title-accent">' + nama + '!</span>';
+      }
+      var sub = document.getElementById('sambutan-sub');
+      if (sub) sub.textContent = 'Selamat datang kembali di LingkunganKU.';
     }
 
-    // Lihat Semua: cek login
-    document.getElementById('link-lihat-semua').addEventListener('click', function (e) {
-      e.preventDefault();
-      if (localStorage.getItem('lingkunganku_nama')) {
-        window.location.href = 'laporan-semua.html';
-      } else {
-        window.location.href = 'login.html';
-      }
-    });
+    // Lihat Semua — cek login
+    var linkSemua = document.getElementById('link-lihat-semua');
+    if (linkSemua) {
+      linkSemua.addEventListener('click', function (e) {
+        e.preventDefault();
+        window.location.href = localStorage.getItem('lingkunganku_nama')
+          ? 'laporan-semua.html'
+          : 'login.html';
+      });
+    }
   </script>
 
 </body>

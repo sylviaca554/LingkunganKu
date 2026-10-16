@@ -388,3 +388,34 @@
   .laporan-item-card,
   .laporan-item-img-wrap img { transition: none; transform: none; }
 }
+
+
+/* ============================================================
+   KARTU LAPORAN — FULLY CLICKABLE
+   ============================================================ */
+.laporan-item-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 16px;
+}
+
+.laporan-item-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.laporan-item-link .laporan-item-card {
+  transition: box-shadow 0.25s, transform 0.25s;
+}
+
+.laporan-item-link:hover .laporan-item-card {
+  box-shadow: 0 8px 28px rgba(37,99,235,0.18);
+  transform: translateY(-3px);
+  border-color: #bfdbfe;
+}
+
+/* Badge di dalam link card — tidak perlu efek hover terpisah */
+.laporan-item-link .laporan-item-badge {
+  pointer-events: none;
+}

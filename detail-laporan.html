@@ -2,81 +2,457 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Detail Laporan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Detail Laporan</title>
   <meta name="description" content="Halaman detail laporan masalah lingkungan beserta informasi lokasi dan status.">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Detail Laporan — Desktop Layout ── */
+
+    body {
+      background-color: var(--color-bg);
+    }
+
+    /* Header */
+    body > header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    body > header nav a {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    body > header nav a:hover { text-decoration: underline; }
+
+    body > header h1 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      margin-bottom: 0;
+    }
+
+    /* Main container — desktop dua kolom dengan flex independen */
+    body > main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      grid-template-rows: 1fr;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    /* Kolom kiri: foto + deskripsi + tombol — susun vertical sendiri */
+    .kolom-kiri {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    /* Kolom kanan: judul+status + info detail — susun vertical sendiri dari atas */
+    .kolom-kanan {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    /* ── Foto Laporan ── */
+    section[aria-labelledby="foto-laporan-heading"] h2 {
+      display: none;
+    }
+
+    section[aria-labelledby="foto-laporan-heading"] figure {
+      margin: 0;
+    }
+
+    section[aria-labelledby="foto-laporan-heading"] figure img {
+      width: 100%;
+      height: 500px;
+      max-height: none;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-xl);
+      display: block;
+    }
+
+    section[aria-labelledby="foto-laporan-heading"] figcaption {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-2);
+      text-align: left;
+    }
+
+    /* ── Info Utama (kanan atas) ── */
+    section[aria-labelledby="info-utama-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="info-utama-heading"] h2 {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-3);
+    }
+
+    section[aria-labelledby="info-utama-heading"] p {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+    }
+
+    section[aria-labelledby="info-utama-heading"] p strong {
+      color: var(--color-text);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    section[aria-labelledby="info-utama-heading"] mark {
+      padding: var(--space-1) var(--space-3);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .mark-diproses { background-color: var(--color-diproses-bg); color: var(--color-diproses); }
+    .mark-selesai  { background-color: var(--color-selesai-bg);  color: var(--color-selesai); }
+    .mark-menunggu { background-color: var(--color-menunggu-bg); color: var(--color-menunggu); }
+    .mark-ditolak  { background-color: var(--color-ditolak-bg);  color: var(--color-ditolak); }
+
+    /* ── Deskripsi ── */
+    section[aria-labelledby="deskripsi-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="deskripsi-heading"] h2 {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-3);
+    }
+
+    section[aria-labelledby="deskripsi-heading"] p {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: 0;
+    }
+
+    /* ── Info Detail (kanan bawah) ── */
+    section[aria-labelledby="info-detail-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="info-detail-heading"] h2 {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-4);
+    }
+
+    section[aria-labelledby="info-detail-heading"] table {
+      box-shadow: none;
+      border: none;
+      border-radius: 0;
+      margin-bottom: 0;
+    }
+
+    section[aria-labelledby="info-detail-heading"] caption {
+      display: none;
+    }
+
+    section[aria-labelledby="info-detail-heading"] th[scope="row"] {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      background: transparent;
+      width: 40%;
+      padding: var(--space-2) var(--space-3) var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-detail-heading"] td {
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-detail-heading"] tr:last-child th,
+    section[aria-labelledby="info-detail-heading"] tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* ── Tombol Aksi ── */
+    section[aria-label="Aksi Laporan"] {
+      display: flex;
+      align-items: center;
+    }
+
+    section[aria-label="Aksi Laporan"] a {
+      display: block;
+      width: 100%;
+    }
+
+    section[aria-label="Aksi Laporan"] button {
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+      transition: background-color 0.2s, box-shadow 0.2s;
+      margin-top: 0;
+    }
+
+    section[aria-label="Aksi Laporan"] button:hover {
+      background-color: var(--color-primary-dark);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.45);
+    }
+  </style>
 </head>
 <body>
 
   <header>
     <nav aria-label="Navigasi Kembali">
-      <a href="laporan-semua.html">&larr; Kembali</a>
+      <a href="laporan-semua.html" id="link-kembali">&larr; Kembali</a>
     </nav>
     <h1>Detail Laporan</h1>
   </header>
 
   <main>
+    <div class="kolom-kiri">
+      <!-- Foto Laporan -->
+      <section aria-labelledby="foto-laporan-heading">
+        <h2 id="foto-laporan-heading">Foto Laporan</h2>
+        <figure>
+          <img id="foto-laporan" src="" alt="" width="360">
+          <figcaption id="foto-caption"></figcaption>
+        </figure>
+      </section>
 
-    <!-- Foto Laporan -->
-    <section aria-labelledby="foto-laporan-heading">
-      <h2 id="foto-laporan-heading">Foto Laporan</h2>
-      <figure>
-        <img src="./assets/images/jalan-berlubang.webp" alt="Foto jalan berlubang di Jl. Kemanggisan Raya, Palmerah" width="360">
-        <figcaption>Kondisi jalan berlubang yang membahayakan pengguna jalan.</figcaption>
-      </figure>
-    </section>
+      <!-- Deskripsi Laporan -->
+      <section aria-labelledby="deskripsi-heading">
+        <h2 id="deskripsi-heading">Deskripsi Laporan</h2>
+        <p id="deskripsi-laporan"></p>
+      </section>
 
-    <!-- Judul dan Status -->
-    <section aria-labelledby="info-utama-heading">
-      <h2 id="info-utama-heading">Jalan Rusak</h2>
-      <p><strong>Status:</strong> <mark>Diproses</mark></p>
-      <p>Lokasi: Jl. Kemanggisan Raya, Palmerah</p>
-      <p>Waktu: 3 Jam yang lalu</p>
-    </section>
+      <!-- Tombol Aksi -->
+      <section aria-label="Aksi Laporan">
+        <a href="detail-penanganan.html" id="link-penanganan">
+          <button type="button">Lihat Detail Penanganan</button>
+        </a>
+      </section>
+    </div>
 
-    <!-- Deskripsi Laporan -->
-    <section aria-labelledby="deskripsi-heading">
-      <h2 id="deskripsi-heading">Deskripsi Laporan</h2>
-      <p>
-        Terdapat lubang besar di tengah jalan sepanjang kurang lebih 1 meter dengan kedalaman 20 cm.
-        Kondisi ini sangat membahayakan pengendara motor dan mobil yang melintas, terutama pada malam hari
-        karena minimnya penerangan di lokasi tersebut.
-      </p>
-    </section>
+    <div class="kolom-kanan">
+      <!-- Judul dan Status -->
+      <section aria-labelledby="info-utama-heading">
+        <h2 id="info-utama-heading"></h2>
+        <p><strong>Status:</strong> <mark id="status-laporan"></mark></p>
+        <p id="lokasi-laporan"></p>
+        <p id="waktu-laporan"></p>
+      </section>
 
-    <!-- Informasi Detail -->
-    <section aria-labelledby="info-detail-heading">
-      <h2 id="info-detail-heading">Informasi Detail</h2>
-      <table>
-        <caption>Detail informasi laporan jalan rusak</caption>
-        <tbody>
-          <tr>
-            <th scope="row">Kategori</th>
-            <td>Infrastruktur</td>
-          </tr>
-          <tr>
-            <th scope="row">ID Laporan</th>
-            <td>#LK-12.037</td>
-          </tr>
-          <tr>
-            <th scope="row">Dilaporkan</th>
-            <td>Budi Santoso, 3 Jam yang lalu</td>
-          </tr>
-          <tr>
-            <th scope="row">Lokasi GPS</th>
-            <td>-6.1702, 106.8137</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <!-- Tombol Aksi -->
-    <section aria-label="Aksi Laporan">
-      <a href="detail-penanganan.html">
-        <button type="button">Lihat Detail Penanganan</button>
-      </a>
-    </section>
-
+      <!-- Informasi Detail -->
+      <section aria-labelledby="info-detail-heading">
+        <h2 id="info-detail-heading">Informasi Detail</h2>
+        <table>
+          <caption>Detail informasi laporan</caption>
+          <tbody>
+            <tr>
+              <th scope="row">Kategori</th>
+              <td id="detail-kategori"></td>
+            </tr>
+            <tr>
+              <th scope="row">ID Laporan</th>
+              <td id="detail-id"></td>
+            </tr>
+            <tr>
+              <th scope="row">Dilaporkan</th>
+              <td id="detail-dilaporkan"></td>
+            </tr>
+            <tr>
+              <th scope="row">Lokasi GPS</th>
+              <td id="detail-gps"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
   </main>
+
+  <script>
+    // ── Data semua laporan ──
+    var DATA_LAPORAN = {
+      'jalan-berlubang': {
+        judul:       'Jalan Berlubang',
+        foto:        './assets/images/laporan-jalan-berlubang.webp',
+        fotoAlt:     'Foto jalan berlubang di Jl. Kemanggisan Raya, Palmerah',
+        fotoCaption: 'Kondisi jalan berlubang yang membahayakan pengguna jalan.',
+        status:      'Diproses',
+        statusKelas: 'mark-diproses',
+        lokasi:      'Jl. Kemanggisan Raya, Palmerah',
+        waktu:       '2 Jam yang lalu',
+        deskripsi:   'Terdapat lubang besar di tengah jalan sepanjang kurang lebih 1 meter dengan kedalaman 20 cm. Kondisi ini sangat membahayakan pengendara motor dan mobil yang melintas, terutama pada malam hari karena minimnya penerangan di lokasi tersebut.',
+        kategori:    'Infrastruktur',
+        id:          '#LK-12.037',
+        dilaporkan:  'Budi Santoso, 2 Jam yang lalu',
+        gps:         '-6.1702, 106.8137',
+        sumberHalaman: 'laporan-semua.html'
+      },
+      'lampu-jalan-mati': {
+        judul:       'Lampu Jalan Mati',
+        foto:        './assets/images/laporan-lampu-jalan-mati.webp',
+        fotoAlt:     'Foto laporan lampu jalan mati di Jl. Sudirman',
+        fotoCaption: 'Lampu jalan yang tidak menyala dan membahayakan pengguna jalan di malam hari.',
+        status:      'Selesai',
+        statusKelas: 'mark-selesai',
+        lokasi:      'Jl. Sudirman, Menteng, Jakarta Pusat',
+        waktu:       '3 Jam yang lalu',
+        deskripsi:   'Terdapat 3 titik lampu jalan yang tidak menyala sejak 2 hari lalu. Kondisi ini menyebabkan jalan gelap dan berbahaya bagi pengendara maupun pejalan kaki pada malam hari.',
+        kategori:    'Fasilitas Umum',
+        id:          '#LK-12.038',
+        dilaporkan:  'Siti Rahayu, 3 Jam yang lalu',
+        gps:         '-6.2088, 106.8456',
+        sumberHalaman: 'laporan-semua.html'
+      },
+      'sampah-menumpuk': {
+        judul:       'Sampah Menumpuk',
+        foto:        './assets/images/laporan-sampah-menumpuk.webp',
+        fotoAlt:     'Foto laporan sampah menumpuk di pinggir jalan',
+        fotoCaption: 'Tumpukan sampah yang tidak diangkut menyebabkan bau tidak sedap.',
+        status:      'Diproses',
+        statusKelas: 'mark-diproses',
+        lokasi:      'Jl. Mangga Besar, Taman Sari, Jakarta Barat',
+        waktu:       '6 Jam yang lalu',
+        deskripsi:   'Sampah menumpuk di pinggir jalan sudah lebih dari 3 hari tidak diangkut oleh petugas kebersihan. Tumpukan sampah menyebabkan bau tidak sedap dan berpotensi menjadi sarang penyakit.',
+        kategori:    'Kebersihan',
+        id:          '#LK-12.039',
+        dilaporkan:  'Ahmad Fauzi, 6 Jam yang lalu',
+        gps:         '-6.1475, 106.8221',
+        sumberHalaman: 'laporan-semua.html'
+      },
+      'sampah-menumpuk-ditolak': {
+        judul:       'Sampah Menumpuk',
+        foto:        './assets/images/laporan-sampah-menumpuk.webp',
+        fotoAlt:     'Foto laporan sampah menumpuk yang ditolak',
+        fotoCaption: 'Laporan ini ditolak karena foto tidak jelas.',
+        status:      'Ditolak',
+        statusKelas: 'mark-ditolak',
+        lokasi:      'Jl. Cempaka Putih, Jakarta Pusat',
+        waktu:       '2 Hari yang lalu',
+        deskripsi:   'Sampah menumpuk di sekitar area perumahan. Laporan ditolak karena foto tidak jelas dan lokasi tidak dapat diverifikasi.',
+        kategori:    'Kebersihan',
+        id:          '#LK-12.040',
+        dilaporkan:  'Dewi Lestari, 2 Hari yang lalu',
+        gps:         '-6.1620, 106.8553',
+        sumberHalaman: 'laporan-semua.html'
+      },
+      'selokan-tersumbat': {
+        judul:       'Selokan Tersumbat',
+        foto:        './assets/images/laporan-selokan-tersumbat.webp',
+        fotoAlt:     'Foto laporan selokan tersumbat',
+        fotoCaption: 'Selokan tersumbat yang menyebabkan genangan air.',
+        status:      'Diproses',
+        statusKelas: 'mark-diproses',
+        lokasi:      'Jl. Kramat Jati, Jakarta Timur',
+        waktu:       '12 Jam yang lalu',
+        deskripsi:   'Selokan di depan rumah warga tersumbat oleh sampah dan lumpur sehingga air tidak dapat mengalir. Kondisi ini menyebabkan genangan air yang mengganggu aktivitas warga sekitar.',
+        kategori:    'Sanitasi',
+        id:          '#LK-12.041',
+        dilaporkan:  'Rudi Hartono, 12 Jam yang lalu',
+        gps:         '-6.2649, 106.8527',
+        sumberHalaman: 'laporan-semua.html'
+      },
+      'selokan-tersumbat-ditolak': {
+        judul:       'Selokan Tersumbat',
+        foto:        './assets/images/laporan-selokan-tersumbat.webp',
+        fotoAlt:     'Foto laporan selokan tersumbat yang ditolak',
+        fotoCaption: 'Laporan ini ditolak karena merupakan duplikasi.',
+        status:      'Ditolak',
+        statusKelas: 'mark-ditolak',
+        lokasi:      'Jl. Kramat Jati, Jakarta Timur',
+        waktu:       '4 Hari yang lalu',
+        deskripsi:   'Selokan tersumbat yang dilaporkan ternyata merupakan duplikasi dari laporan yang sudah ada sebelumnya.',
+        kategori:    'Sanitasi',
+        id:          '#LK-12.042',
+        dilaporkan:  'Wati Sari, 4 Hari yang lalu',
+        gps:         '-6.2649, 106.8527',
+        sumberHalaman: 'laporan-semua.html'
+      }
+    };
+
+    // ── Baca parameter URL ──
+    var params = new URLSearchParams(window.location.search);
+    var idLaporan = params.get('id') || 'jalan-berlubang';
+    var sumberHalaman = params.get('dari') || 'laporan-semua.html';
+
+    var laporan = DATA_LAPORAN[idLaporan] || DATA_LAPORAN['jalan-berlubang'];
+
+    // ── Isi konten halaman ──
+    document.getElementById('foto-laporan').src = laporan.foto;
+    document.getElementById('foto-laporan').alt = laporan.fotoAlt;
+    document.getElementById('foto-caption').textContent = laporan.fotoCaption;
+
+    document.getElementById('info-utama-heading').textContent = laporan.judul;
+
+    var markEl = document.getElementById('status-laporan');
+    markEl.textContent = laporan.status;
+    markEl.className = laporan.statusKelas;
+
+    document.getElementById('lokasi-laporan').textContent = 'Lokasi: ' + laporan.lokasi;
+    document.getElementById('waktu-laporan').textContent = 'Waktu: ' + laporan.waktu;
+    document.getElementById('deskripsi-laporan').textContent = laporan.deskripsi;
+
+    document.getElementById('detail-kategori').textContent = laporan.kategori;
+    document.getElementById('detail-id').textContent = laporan.id;
+    document.getElementById('detail-dilaporkan').textContent = laporan.dilaporkan;
+    document.getElementById('detail-gps').textContent = laporan.gps;
+
+    // ── Link kembali: ke halaman sumber ──
+    document.getElementById('link-kembali').href = sumberHalaman;
+
+    // ── Link penanganan: bawa id laporan ──
+    document.getElementById('link-penanganan').href = 'detail-penanganan.html?id=' + idLaporan;
+
+    // ── Update title halaman ──
+    document.title = 'LingkunganKU - ' + laporan.judul;
+  </script>
 
 </body>
 </html>

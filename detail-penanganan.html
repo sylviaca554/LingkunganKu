@@ -2,128 +2,537 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Detail Penanganan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LingkunganKU - Detail Penanganan</title>
   <meta name="description" content="Halaman detail proses penanganan laporan oleh petugas terkait.">
-  <link rel="stylesheet" href="./css/base.css">
-  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* ── Detail Penanganan — Desktop Layout ── */
+
+    body {
+      background-color: var(--color-bg);
+    }
+
+    /* Header */
+    body > header {
+      background-color: var(--color-white);
+      border-bottom: 1px solid var(--color-border);
+      padding-top: var(--space-4);
+      padding-bottom: var(--space-4);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    body > header nav a {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-primary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-1);
+    }
+
+    body > header nav a:hover { text-decoration: underline; }
+
+    body > header h1 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary);
+      margin-bottom: 0;
+    }
+
+    /* Main container — desktop dua kolom dengan flex independen */
+    body > main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6);
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: var(--space-6);
+      align-items: start;
+    }
+
+    /* Kolom kiri dan kanan susun vertical sendiri */
+    .kolom-kiri {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .kolom-kanan {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    /* ── Foto Penanganan ── */
+    section[aria-labelledby="foto-penanganan-heading"] h2 {
+      display: none;
+    }
+
+    section[aria-labelledby="foto-penanganan-heading"] figure {
+      margin: 0;
+    }
+
+    section[aria-labelledby="foto-penanganan-heading"] figure img {
+      width: 100%;
+      height: 480px;
+      max-height: none;
+      object-fit: cover;
+      object-position: center;
+      border-radius: var(--radius-xl);
+      display: block;
+    }
+
+    section[aria-labelledby="foto-penanganan-heading"] figcaption {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-2);
+    }
+
+    /* ── Info Petugas ── */
+    section[aria-labelledby="info-petugas-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="info-petugas-heading"] h2 {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-4);
+    }
+
+    section[aria-labelledby="info-petugas-heading"] table {
+      box-shadow: none; border: none; border-radius: 0; margin-bottom: 0;
+    }
+
+    section[aria-labelledby="info-petugas-heading"] caption { display: none; }
+
+    section[aria-labelledby="info-petugas-heading"] th[scope="row"] {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      background: transparent;
+      width: 38%;
+      padding: var(--space-2) var(--space-3) var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-petugas-heading"] td {
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-petugas-heading"] tr:last-child th,
+    section[aria-labelledby="info-petugas-heading"] tr:last-child td { border-bottom: none; }
+
+    /* ── Info Laporan ── */
+    section[aria-labelledby="info-laporan-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="info-laporan-heading"] h2 {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-4);
+    }
+
+    section[aria-labelledby="info-laporan-heading"] table {
+      box-shadow: none; border: none; border-radius: 0; margin-bottom: 0;
+    }
+
+    section[aria-labelledby="info-laporan-heading"] caption { display: none; }
+
+    section[aria-labelledby="info-laporan-heading"] th[scope="row"] {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
+      background: transparent;
+      width: 38%;
+      padding: var(--space-2) var(--space-3) var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-laporan-heading"] td {
+      font-size: var(--font-size-sm);
+      color: var(--color-text);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    section[aria-labelledby="info-laporan-heading"] tr:last-child th,
+    section[aria-labelledby="info-laporan-heading"] tr:last-child td { border-bottom: none; }
+
+    /* ── Proses Penanganan ── */
+    section[aria-labelledby="proses-heading"] {
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    section[aria-labelledby="proses-heading"] h2 {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-4);
+    }
+
+    section[aria-labelledby="proses-heading"] > p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+      margin-bottom: var(--space-5);
+    }
+
+    /* Timeline */
+    ol[aria-label="Tahapan proses penanganan"] {
+      list-style: none;
+      position: relative;
+      padding-left: 2.5rem;
+      margin: 0;
+    }
+
+    ol[aria-label="Tahapan proses penanganan"]::before {
+      content: '';
+      position: absolute;
+      left: 13px;
+      top: 6px;
+      bottom: 6px;
+      width: 2px;
+      background: linear-gradient(to bottom, var(--color-selesai), var(--color-primary-light));
+      border-radius: 2px;
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] li {
+      position: relative;
+      margin-bottom: var(--space-5);
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] li:last-child { margin-bottom: 0; }
+
+    ol[aria-label="Tahapan proses penanganan"] li::before {
+      content: '✓';
+      position: absolute;
+      left: -2.5rem;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      background-color: var(--color-selesai);
+      color: white;
+      border-radius: var(--radius-full);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      border: 2px solid var(--color-white);
+      box-shadow: 0 0 0 2px var(--color-selesai);
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] article {
+      background: var(--color-bg);
+      border-radius: var(--radius-md);
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border);
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] h3 {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-primary-dark);
+      margin-bottom: var(--space-1);
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] p {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-1);
+    }
+
+    ol[aria-label="Tahapan proses penanganan"] time {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+    }
+
+    /* ── Tombol Kembali ── */
+    section[aria-label="Navigasi Kembali"] {
+      display: flex;
+      align-items: center;
+    }
+
+    section[aria-label="Navigasi Kembali"] a {
+      display: block;
+      width: 100%;
+    }
+
+    section[aria-label="Navigasi Kembali"] button {
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-bold);
+      background-color: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+      transition: background-color 0.2s, box-shadow 0.2s;
+      margin-top: 0;
+    }
+
+    section[aria-label="Navigasi Kembali"] button:hover {
+      background-color: var(--color-primary-dark);
+      box-shadow: 0 6px 20px rgba(37,99,235,0.45);
+    }
+  </style>
 </head>
 <body>
 
-  <header class="site-header"></header>
-  <script src="./js/navbar.js"></script>
-
-
   <header>
     <nav aria-label="Navigasi Kembali">
-      <a href="detail-laporan.html">&larr; Kembali</a>
+      <a href="detail-laporan.html" id="link-kembali">&larr; Kembali</a>
     </nav>
     <h1>Detail Penanganan</h1>
   </header>
 
   <main>
+    <div class="kolom-kiri">
+      <!-- Foto Laporan -->
+      <section aria-labelledby="foto-penanganan-heading">
+        <h2 id="foto-penanganan-heading">Foto Laporan</h2>
+        <figure>
+          <img id="foto-penanganan" src="" alt="">
+          <figcaption id="foto-caption"></figcaption>
+        </figure>
+      </section>
 
-    <!-- Foto Penanganan -->
-    <section aria-labelledby="foto-penanganan-heading">
-      <h2 id="foto-penanganan-heading">Foto Penanganan</h2>
-      <figure>
-        <img src="./assets/images/penanganan-jalan.webp" alt="Foto proses perbaikan jalan berlubang oleh tim petugas" width="360">
-        <figcaption>Proses perbaikan jalan oleh tim Dinas PU Kota.</figcaption>
-      </figure>
-    </section>
+      <!-- Informasi Laporan (deskripsi & GPS) -->
+      <section aria-labelledby="info-laporan-heading">
+        <h2 id="info-laporan-heading">Detail Laporan</h2>
+        <table>
+          <caption>Ringkasan detail laporan</caption>
+          <tbody>
+            <tr>
+              <th scope="row">Deskripsi</th>
+              <td id="laporan-deskripsi"></td>
+            </tr>
+            <tr>
+              <th scope="row">Titik Lokasi</th>
+              <td id="laporan-gps"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <!-- Info Petugas -->
-    <section aria-labelledby="info-petugas-heading">
-      <h2 id="info-petugas-heading">Petugas Penanganan</h2>
-      <table>
-        <caption>Informasi petugas yang menangani laporan</caption>
-        <tbody>
-          <tr>
-            <th scope="row">Nama</th>
-            <td>Irfan Rusdi</td>
-          </tr>
-          <tr>
-            <th scope="row">Jabatan</th>
-            <td>Petugas Dinas PU</td>
-          </tr>
-          <tr>
-            <th scope="row">Kontak</th>
-            <td>+62 812 3456 7890</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+      <!-- Tombol Kembali -->
+      <section aria-label="Navigasi Kembali">
+        <a href="detail-laporan.html" id="link-kembali-bawah">
+          <button type="button">Kembali</button>
+        </a>
+      </section>
+    </div>
 
-    <!-- Informasi Laporan -->
-    <section aria-labelledby="info-laporan-heading">
-      <h2 id="info-laporan-heading">Informasi Laporan</h2>
-      <table>
-        <caption>Ringkasan informasi laporan yang ditangani</caption>
-        <tbody>
-          <tr>
-            <th scope="row">Kategori</th>
-            <td>Infrastruktur</td>
-          </tr>
-          <tr>
-            <th scope="row">ID Laporan</th>
-            <td>#LK-12.037</td>
-          </tr>
-          <tr>
-            <th scope="row">Dilaporkan</th>
-            <td>07/10/2026</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    <div class="kolom-kanan">
+      <!-- Info Petugas -->
+      <section aria-labelledby="info-petugas-heading">
+        <h2 id="info-petugas-heading">Informasi Laporan</h2>
+        <table>
+          <caption>Informasi laporan yang ditangani</caption>
+          <tbody>
+            <tr>
+              <th scope="row">Judul</th>
+              <td id="petugas-judul"></td>
+            </tr>
+            <tr>
+              <th scope="row">Kategori</th>
+              <td id="petugas-kategori"></td>
+            </tr>
+            <tr>
+              <th scope="row">Lokasi</th>
+              <td id="petugas-lokasi"></td>
+            </tr>
+            <tr>
+              <th scope="row">Waktu</th>
+              <td id="petugas-waktu"></td>
+            </tr>
+            <tr>
+              <th scope="row">ID Laporan</th>
+              <td id="petugas-id"></td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
-    <!-- Proses Penanganan -->
-    <section aria-labelledby="proses-heading">
-      <h2 id="proses-heading">Proses Penanganan</h2>
-      <p>
-        Tim petugas dari Dinas Pekerjaan Umum telah melakukan pengecekan lapangan dan memulai
-        proses penambalan jalan berlubang menggunakan aspal hotmix. Pekerjaan diperkirakan
-        selesai dalam 2 hari kerja.
-      </p>
+      <!-- Proses Penanganan -->
+      <section aria-labelledby="proses-heading">
+        <h2 id="proses-heading">Proses Penanganan</h2>
+        <p id="proses-deskripsi"></p>
 
-      <ol aria-label="Tahapan proses penanganan">
-        <li>
-          <article>
-            <h3>Laporan Diterima</h3>
-            <p>Laporan masuk dan terverifikasi oleh sistem.</p>
-            <p><time datetime="2026-10-07T08:00">07 Okt 2026, 08.00 WIB</time></p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Survei Lokasi Pengerjaan</h3>
-            <p>Petugas melakukan survei kondisi lapangan di lokasi laporan.</p>
-            <p><time datetime="2026-10-07T10:30">07 Okt 2026, 10.30 WIB</time></p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Proses Penanganan</h3>
-            <p>Tim perbaikan jalan mulai bekerja di lokasi.</p>
-            <p><time datetime="2026-10-07T13:00">07 Okt 2026, 13.00 WIB</time></p>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Selesai</h3>
-            <p>Perbaikan jalan selesai dan siap digunakan kembali.</p>
-            <p><time datetime="2026-10-08T16:00">08 Okt 2026, 16.00 WIB</time></p>
-          </article>
-        </li>
-      </ol>
-    </section>
-
-    <!-- Tombol Kembali -->
-    <section aria-label="Navigasi Kembali">
-      <a href="detail-laporan.html">
-        <button type="button">Kembali</button>
-      </a>
-    </section>
-
+        <ol aria-label="Tahapan proses penanganan">
+          <li>
+            <article>
+              <h3>Laporan Diterima</h3>
+              <p>Laporan masuk dan terverifikasi oleh sistem.</p>
+              <p><time datetime="2026-10-07T08:00">07 Okt 2026, 08.00 WIB</time></p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>Survei Lokasi</h3>
+              <p>Petugas melakukan survei kondisi lapangan di lokasi laporan.</p>
+              <p><time datetime="2026-10-07T10:30">07 Okt 2026, 10.30 WIB</time></p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>Proses Penanganan</h3>
+              <p>Tim penanganan mulai bekerja di lokasi.</p>
+              <p><time datetime="2026-10-07T13:00">07 Okt 2026, 13.00 WIB</time></p>
+            </article>
+          </li>
+          <li>
+            <article>
+              <h3>Selesai</h3>
+              <p>Penanganan selesai dan lokasi siap digunakan kembali.</p>
+              <p><time datetime="2026-10-08T16:00">08 Okt 2026, 16.00 WIB</time></p>
+            </article>
+          </li>
+        </ol>
+      </section>
+    </div>
   </main>
 
-  </body>
+  <script>
+    // ── Data laporan (sama dengan detail-laporan.html) ──
+    var DATA_LAPORAN = {
+      'jalan-berlubang': {
+        judul:      'Jalan Berlubang',
+        foto:       './assets/images/laporan-jalan-berlubang.webp',
+        fotoAlt:    'Foto jalan berlubang',
+        fotoCaption:'Kondisi jalan berlubang yang membahayakan pengguna jalan.',
+        kategori:   'Infrastruktur',
+        lokasi:     'Jl. Kemanggisan Raya, Palmerah',
+        waktu:      '2 Jam yang lalu',
+        id:         '#LK-12.037',
+        deskripsi:  'Terdapat lubang besar di tengah jalan sepanjang kurang lebih 1 meter dengan kedalaman 20 cm. Kondisi ini sangat membahayakan pengendara motor dan mobil yang melintas.',
+        gps:        '-6.1702, 106.8137',
+        prosesDeskripsi: 'Tim petugas dari Dinas Pekerjaan Umum telah melakukan pengecekan lapangan dan memulai proses penambalan jalan berlubang menggunakan aspal hotmix.'
+      },
+      'lampu-jalan-mati': {
+        judul:      'Lampu Jalan Mati',
+        foto:       './assets/images/laporan-lampu-jalan-mati.webp',
+        fotoAlt:    'Foto lampu jalan mati',
+        fotoCaption:'Lampu jalan yang tidak menyala dan berbahaya di malam hari.',
+        kategori:   'Fasilitas Umum',
+        lokasi:     'Jl. Sudirman, Menteng, Jakarta Pusat',
+        waktu:      '3 Jam yang lalu',
+        id:         '#LK-12.038',
+        deskripsi:  'Terdapat 3 titik lampu jalan yang tidak menyala sejak 2 hari lalu, menyebabkan jalan gelap dan berbahaya bagi pengendara maupun pejalan kaki.',
+        gps:        '-6.2088, 106.8456',
+        prosesDeskripsi: 'Tim PLN dan Dinas Penerangan Jalan telah melakukan pengecekan dan penggantian lampu di 3 titik yang bermasalah.'
+      },
+      'sampah-menumpuk': {
+        judul:      'Sampah Menumpuk',
+        foto:       './assets/images/laporan-sampah-menumpuk.webp',
+        fotoAlt:    'Foto sampah menumpuk',
+        fotoCaption:'Tumpukan sampah yang tidak diangkut selama beberapa hari.',
+        kategori:   'Kebersihan',
+        lokasi:     'Jl. Mangga Besar, Taman Sari, Jakarta Barat',
+        waktu:      '6 Jam yang lalu',
+        id:         '#LK-12.039',
+        deskripsi:  'Sampah menumpuk di pinggir jalan sudah lebih dari 3 hari tidak diangkut oleh petugas kebersihan, menyebabkan bau tidak sedap.',
+        gps:        '-6.1475, 106.8221',
+        prosesDeskripsi: 'Tim kebersihan dari Dinas Lingkungan Hidup telah ditugaskan untuk membersihkan area tumpukan sampah.'
+      },
+      'sampah-menumpuk-ditolak': {
+        judul:      'Sampah Menumpuk',
+        foto:       './assets/images/laporan-sampah-menumpuk.webp',
+        fotoAlt:    'Foto sampah menumpuk',
+        fotoCaption:'Laporan ini ditolak karena foto tidak jelas.',
+        kategori:   'Kebersihan',
+        lokasi:     'Jl. Cempaka Putih, Jakarta Pusat',
+        waktu:      '2 Hari yang lalu',
+        id:         '#LK-12.040',
+        deskripsi:  'Laporan ditolak karena foto tidak jelas dan lokasi tidak dapat diverifikasi.',
+        gps:        '-6.1620, 106.8553',
+        prosesDeskripsi: 'Laporan ini tidak dapat diproses karena tidak memenuhi syarat pelaporan.'
+      },
+      'selokan-tersumbat': {
+        judul:      'Selokan Tersumbat',
+        foto:       './assets/images/laporan-selokan-tersumbat.webp',
+        fotoAlt:    'Foto selokan tersumbat',
+        fotoCaption:'Selokan tersumbat yang menyebabkan genangan air.',
+        kategori:   'Sanitasi',
+        lokasi:     'Jl. Kramat Jati, Jakarta Timur',
+        waktu:      '12 Jam yang lalu',
+        id:         '#LK-12.041',
+        deskripsi:  'Selokan tersumbat oleh sampah dan lumpur sehingga air tidak dapat mengalir, menyebabkan genangan di area warga.',
+        gps:        '-6.2649, 106.8527',
+        prosesDeskripsi: 'Tim dari Dinas Pekerjaan Umum telah ditugaskan untuk membersihkan saluran air yang tersumbat.'
+      },
+      'selokan-tersumbat-ditolak': {
+        judul:      'Selokan Tersumbat',
+        foto:       './assets/images/laporan-selokan-tersumbat.webp',
+        fotoAlt:    'Foto selokan tersumbat',
+        fotoCaption:'Laporan ditolak karena duplikasi.',
+        kategori:   'Sanitasi',
+        lokasi:     'Jl. Kramat Jati, Jakarta Timur',
+        waktu:      '4 Hari yang lalu',
+        id:         '#LK-12.042',
+        deskripsi:  'Laporan ditolak karena merupakan duplikasi dari laporan yang sudah ada sebelumnya.',
+        gps:        '-6.2649, 106.8527',
+        prosesDeskripsi: 'Laporan ini tidak dapat diproses karena merupakan duplikasi.'
+      }
+    };
+
+    // ── Baca parameter URL ──
+    var params    = new URLSearchParams(window.location.search);
+    var idLaporan = params.get('id') || 'jalan-berlubang';
+
+    var laporan = DATA_LAPORAN[idLaporan] || DATA_LAPORAN['jalan-berlubang'];
+
+    // ── Isi konten halaman ──
+    document.getElementById('foto-penanganan').src = laporan.foto;
+    document.getElementById('foto-penanganan').alt = laporan.fotoAlt;
+    document.getElementById('foto-caption').textContent = laporan.fotoCaption;
+
+    document.getElementById('petugas-judul').textContent    = laporan.judul;
+    document.getElementById('petugas-kategori').textContent = laporan.kategori;
+    document.getElementById('petugas-lokasi').textContent   = laporan.lokasi;
+    document.getElementById('petugas-waktu').textContent    = laporan.waktu;
+    document.getElementById('petugas-id').textContent       = laporan.id;
+
+    document.getElementById('laporan-deskripsi').textContent = laporan.deskripsi;
+    document.getElementById('laporan-gps').textContent       = laporan.gps;
+    document.getElementById('proses-deskripsi').textContent  = laporan.prosesDeskripsi;
+
+    // ── Tombol kembali: kembali ke detail laporan dengan id yang sama ──
+    var urlKembali = 'detail-laporan.html?id=' + idLaporan;
+    document.getElementById('link-kembali').href       = urlKembali;
+    document.getElementById('link-kembali-bawah').href = urlKembali;
+
+    // ── Update title halaman ──
+    document.title = 'LingkunganKU - Penanganan ' + laporan.judul;
+  </script>
+
+</body>
 </html>

@@ -144,3 +144,119 @@ body > header.site-header {
     justify-content: center;
   }
 }
+/* ---------- Navbar kaca: menempel di atas, blur saat halaman digulir ---------- */
+body > header.site-header {
+  position: sticky !important;
+  top: 0 !important;
+  z-index: 100 !important;
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+.site-header .navbar {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 10px 24px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-bottom: 1px solid transparent !important;
+  transition: background .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.site-header.sudah-gulir .navbar {
+  background: rgba(255, 255, 255, .62) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+  border-bottom-color: rgba(255, 255, 255, .5) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, .08) !important;
+}
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .site-header.sudah-gulir .navbar { background: rgba(255, 255, 255, .92) !important; }
+}
+@media (max-width: 760px) {
+  .site-header .navbar { padding: 8px 14px !important; }
+}
+/* ---------- Penyesuaian: logo, grid sejajar konten, tombol lebih kecil ---------- */
+
+/* Isi navbar dibatasi selebar konten (1200px), latar blur tetap penuh */
+body > header.site-header .navbar {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  padding-left: max(24px, calc((100% - 1200px) / 2 + 24px)) !important;
+  padding-right: max(24px, calc((100% - 1200px) / 2 + 24px)) !important;
+  grid-template-columns: 1fr auto 1fr !important;
+}
+
+/* Logo dan nama lebih besar */
+.site-header .brand { gap: 12px !important; font-size: 1.3rem !important; }
+.site-header .brand img { height: 48px !important; width: auto !important; }
+
+/* Menu tetap di tengah kolom */
+.site-header .navbar nav { justify-self: center !important; }
+
+/* Tombol Masuk dan Daftar lebih kecil */
+.site-header .nav-tamu { gap: 8px !important; }
+.site-header .nav-masuk,
+.site-header .nav-daftar {
+  padding: 6px 16px !important;
+  font-size: .85rem !important;
+  border-radius: 8px !important;
+  line-height: 1.4 !important;
+}
+
+/* Foto dan nama pengguna (setelah login) ikut mengecil sedikit */
+.site-header .nav-user { font-size: .85rem !important; padding: 4px 12px 4px 4px !important; }
+.site-header .nav-user img { width: 28px !important; height: 28px !important; }
+
+@media (max-width: 760px) {
+  body > header.site-header .navbar {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+  .site-header .brand { font-size: 1.1rem !important; }
+  .site-header .brand img { height: 38px !important; }
+}
+/* ---------- Blur halus: intensitas mengikuti jarak gulir ---------- */
+@property --nb-g {
+  syntax: '<number>';
+  inherits: true;
+  initial-value: 0;
+}
+.site-header {
+  --nb-g: 0;
+  transition: --nb-g .2s ease-out;
+}
+body > header.site-header .navbar.navbar {
+  background: rgba(255, 255, 255, calc(var(--nb-g) * 0.62)) !important;
+  -webkit-backdrop-filter: blur(calc(var(--nb-g) * 14px)) saturate(calc(1 + var(--nb-g) * 0.6)) !important;
+  backdrop-filter: blur(calc(var(--nb-g) * 14px)) saturate(calc(1 + var(--nb-g) * 0.6)) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, calc(var(--nb-g) * 0.5)) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, calc(var(--nb-g) * 0.08)) !important;
+  transition: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-header { transition: none; }
+}
+/* ---------- Penanda menu diperkecil, samakan dengan tombol Masuk/Daftar ---------- */
+.site-header .navbar nav a,
+.site-header .navbar nav .nav-link,
+.site-header .navbar nav li > a {
+  padding: 6px 16px !important;
+  font-size: .85rem !important;
+  line-height: 1.4 !important;
+  border-radius: 8px !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+.site-header .navbar nav ul,
+.site-header .navbar nav {
+  gap: 4px !important;
+}
+/* ---------- "Ku" pada logo berwarna hijau ---------- */
+.site-header .brand .brand-teks { display: inline; }
+.site-header .brand .brand-ku { color: #16A34A !important; }

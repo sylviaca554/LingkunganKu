@@ -45,7 +45,43 @@
           '<span id="nav-user-nama"></span>' +
         '</a>' +
       '</div>' +
+      '<button class="nav-hamburger" id="nav-hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="nav-mobile-menu">' +
+        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>' +
+      '</button>' +
     '</div>';
+
+  // Hamburger toggle
+  var hamburger = document.getElementById('nav-hamburger');
+  var navMenu   = host.querySelector('nav[aria-label="Menu Situs"]');
+  if (hamburger && navMenu) {
+    navMenu.id = 'nav-mobile-menu';
+    hamburger.addEventListener('click', function () {
+      var isOpen = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      hamburger.innerHTML = isOpen
+        ? '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+        : '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+    });
+
+    // Tutup menu saat Escape ditekan
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+        hamburger.focus(); // kembalikan fokus ke tombol hamburger
+      }
+    });
+
+    // Tutup menu saat klik di luar navbar
+    document.addEventListener('click', function (e) {
+      if (!host.contains(e.target) && navMenu.classList.contains('open')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+        hamburger.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>';
+      }
+    });
+  }
 
   // Jika sudah login: ganti Masuk/Daftar dengan foto dan nama pengguna
   var nama = localStorage.getItem('lingkunganku_nama');

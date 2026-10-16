@@ -496,60 +496,75 @@ header nav[aria-label="Akun Pengguna"] a:last-child button {
 }
 
 
+/* ── Utility: screen-reader only ── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+/* ── Utility: reset main untuk halaman non-beranda ── */
+body:not(.page-beranda) > main {
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 /* ============================================================
    8. MAIN CONTENT
    ============================================================ */
-body > main {
+body:not(.page-beranda) > main {
   padding-top: var(--space-5);
   padding-bottom: var(--space-10);
 }
 
-main section {
+body:not(.page-beranda) main section {
   margin-bottom: var(--space-6);
 }
 
 
 /* ============================================================
-   9. HERO / SAMBUTAN (index.html)
+   9. HERO / SAMBUTAN — hanya untuk halaman non-beranda
    ============================================================ */
-section[aria-labelledby="sambutan-heading"] {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] {
   background: linear-gradient(135deg, var(--color-primary-bg) 0%, var(--color-secondary-bg) 100%);
   border-radius: var(--radius-xl);
   padding: var(--space-6);
   margin-bottom: var(--space-6);
 }
 
-section[aria-labelledby="sambutan-heading"] h1 {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] h1 {
   font-size: var(--font-size-xl);
   color: var(--color-primary-dark);
   margin-bottom: var(--space-1);
 }
 
-section[aria-labelledby="sambutan-heading"] p {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] p {
   color: var(--color-text-secondary);
   font-size: var(--font-size-sm);
   margin-bottom: var(--space-2);
 }
 
 /* Form Cari di Beranda */
-section[aria-labelledby="sambutan-heading"] form {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form {
   margin-top: var(--space-4);
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
 }
 
-section[aria-labelledby="sambutan-heading"] form label {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form label {
   font-weight: var(--font-weight-semibold);
   color: var(--color-primary-dark);
   margin-top: 0;
 }
 
-section[aria-labelledby="sambutan-heading"] form input[type="search"] {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form input[type="search"] {
   margin-bottom: 0;
 }
 
-section[aria-labelledby="sambutan-heading"] form button[type="submit"] {
+body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form button[type="submit"] {
   margin-top: 0;
   background-color: var(--color-primary);
   color: var(--color-white);
@@ -558,19 +573,20 @@ section[aria-labelledby="sambutan-heading"] form button[type="submit"] {
 
 /* ============================================================
    10. KARTU LAPORAN (daftar di beranda & laporan-semua)
+   Hanya berlaku untuk halaman selain beranda yang pakai struktur lama
    ============================================================ */
-ul[aria-label*="laporan"],
-ul[aria-label*="Laporan"],
-section[aria-labelledby="laporan-sekitar-heading"] > ul {
+body:not(.page-beranda) ul[aria-label*="laporan"],
+body:not(.page-beranda) ul[aria-label*="Laporan"],
+body:not(.page-beranda) section[aria-labelledby="laporan-sekitar-heading"] > ul {
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
 }
 
-ul[aria-label*="laporan"] li article,
-ul[aria-label*="Laporan"] li article,
-section[aria-labelledby="laporan-sekitar-heading"] li article {
+body:not(.page-beranda) ul[aria-label*="laporan"] li article,
+body:not(.page-beranda) ul[aria-label*="Laporan"] li article,
+body:not(.page-beranda) section[aria-labelledby="laporan-sekitar-heading"] li article {
   background-color: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -579,29 +595,28 @@ section[aria-labelledby="laporan-sekitar-heading"] li article {
   transition: box-shadow var(--transition);
 }
 
-ul[aria-label*="laporan"] li article:hover,
-ul[aria-label*="Laporan"] li article:hover {
+body:not(.page-beranda) ul[aria-label*="laporan"] li article:hover,
+body:not(.page-beranda) ul[aria-label*="Laporan"] li article:hover {
   box-shadow: var(--shadow-md);
 }
 
-ul[aria-label*="laporan"] li article h2,
-ul[aria-label*="Laporan"] li article h2,
-ul[aria-label*="laporan"] li article h3,
-ul[aria-label*="Laporan"] li article h3 {
+body:not(.page-beranda) ul[aria-label*="laporan"] li article h2,
+body:not(.page-beranda) ul[aria-label*="Laporan"] li article h2,
+body:not(.page-beranda) ul[aria-label*="laporan"] li article h3,
+body:not(.page-beranda) ul[aria-label*="Laporan"] li article h3 {
   font-size: var(--font-size-base);
   margin-bottom: var(--space-1);
 }
 
-ul[aria-label*="laporan"] li article p,
-ul[aria-label*="Laporan"] li article p {
+body:not(.page-beranda) ul[aria-label*="laporan"] li article p,
+body:not(.page-beranda) ul[aria-label*="Laporan"] li article p {
   font-size: var(--font-size-sm);
   color: var(--color-text-secondary);
   margin-bottom: var(--space-1);
 }
 
-/* Gambar thumbnail di kartu laporan */
-ul[aria-label*="laporan"] li article img,
-ul[aria-label*="Laporan"] li article img {
+body:not(.page-beranda):not(.page-laporan) ul[aria-label*="laporan"] li article img,
+body:not(.page-beranda):not(.page-laporan) ul[aria-label*="Laporan"] li article img {
   width: 72px;
   height: 72px;
   object-fit: cover;
@@ -1000,9 +1015,9 @@ ol[aria-label="Tahapan proses penanganan"] h3 {
 
 /* Mobile (default, < 600px) */
 @media (max-width: 599px) {
-  body > header,
-  body > main,
-  body > nav {
+  body:not(.page-beranda) > header,
+  body:not(.page-beranda) > main,
+  body:not(.page-beranda) > nav {
     padding-left: var(--space-4);
     padding-right: var(--space-4);
   }
@@ -1010,8 +1025,8 @@ ol[aria-label="Tahapan proses penanganan"] h3 {
 
 /* Tablet (min 600px) */
 @media (min-width: 600px) {
-  body > header,
-  body > main {
+  body:not(.page-beranda) > header,
+  body:not(.page-beranda) > main {
     padding-left: var(--space-8);
     padding-right: var(--space-8);
   }
@@ -1020,16 +1035,16 @@ ol[aria-label="Tahapan proses penanganan"] h3 {
     gap: var(--space-2);
   }
 
-  section[aria-labelledby="sambutan-heading"] form {
+  body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form {
     flex-direction: row;
     align-items: flex-end;
   }
 
-  section[aria-labelledby="sambutan-heading"] form input[type="search"] {
+  body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form input[type="search"] {
     flex: 1;
   }
 
-  section[aria-labelledby="sambutan-heading"] form button[type="submit"] {
+  body:not(.page-beranda) section[aria-labelledby="sambutan-heading"] form button[type="submit"] {
     width: auto;
     white-space: nowrap;
   }

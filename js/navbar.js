@@ -32,7 +32,7 @@
   host.innerHTML =
     '<div class="navbar">' +
       '<a class="brand" href="index.html">' +
-        '<img src="./assets/images/logo.png" alt="Logo LingkunganKU">LingkunganKU' +
+        '<img src="./assets/images/logo.png" alt="Logo LingkunganKu"><span class="brand-teks">Lingkungan<span class="brand-ku">Ku</span></span>' +
       '</a>' +
       '<nav aria-label="Menu Situs"><ul>' + menuHtml + '</ul></nav>' +
       '<div class="nav-aksi">' +
@@ -92,4 +92,16 @@
     document.getElementById('nav-user-foto').src =
       localStorage.getItem('lingkunganku_foto') || FOTO_DEFAULT;
   }
+  
+   // Efek kaca bertahap: nilai 0 (di atas) sampai 1 (setelah gulir 80px)
+  var menunggu = false;
+  function aturGulir() {
+    var g = Math.min(Math.max(window.scrollY / 80, 0), 1);
+    host.style.setProperty('--nb-g', g.toFixed(3));
+    menunggu = false;
+  }
+  window.addEventListener('scroll', function () {
+    if (!menunggu) { menunggu = true; requestAnimationFrame(aturGulir); }
+  }, { passive: true });
+  aturGulir();
 })();

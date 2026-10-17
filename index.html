@@ -22,21 +22,10 @@
     <!-- ═══════════════════════════════════ HERO ═══════════════════════════════════ -->
     <section class="hero" aria-labelledby="sambutan-heading">
 
-      <!-- Lapisan parallax kota (CSS) -->
-      <div class="hero-parallax" aria-hidden="true">
-        <div class="hero-layer hero-layer--sky"       data-speed="0.08"></div>
-        <div class="hero-layer hero-layer--cloud1"    data-speed="0.12"></div>
-        <div class="hero-layer hero-layer--cloud2"    data-speed="0.18"></div>
-        <div class="hero-layer hero-layer--buildings" data-speed="0.28"></div>
-        <div class="hero-layer hero-layer--trees"     data-speed="0.46"></div>
-        <div class="hero-layer hero-layer--road"      data-speed="0.65"></div>
-        <div class="hero-layer hero-layer--overlay"></div>
-      </div>
-
       <!-- Konten tengah -->
       <div class="hero-content">
 
-        <span class="hero-label">🌿 Bersama Menjaga Lingkungan</span>
+        <span class="hero-label">Bersama Menjaga Lingkungan</span>
 
         <h1 class="hero-title" id="sambutan-heading">
           Selamat Datang di<br>
@@ -51,13 +40,6 @@
         <form class="hero-search" action="cari-laporan.html" method="get" role="search">
           <label for="cari-beranda" class="sr-only">Cari laporan</label>
           <div class="hero-search-wrap">
-            <svg class="hero-search-icon" xmlns="http://www.w3.org/2000/svg"
-                 width="20" height="20" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2"
-                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <circle cx="11" cy="11" r="8"/>
-              <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-            </svg>
             <input
               type="search"
               id="cari-beranda"
@@ -65,34 +47,17 @@
               class="hero-search-input"
               placeholder="Cari laporan, misal: jalan berlubang, sampah, Palmerah..."
               autocomplete="off">
-            <button type="submit" class="hero-search-btn">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+            <button type="submit" class="hero-search-btn" aria-label="Cari laporan">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
                    fill="none" stroke="currentColor" stroke-width="2.5"
-                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"
-                   style="margin-right:6px;vertical-align:middle">
+                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <circle cx="11" cy="11" r="8"/>
                 <line x1="21" y1="21" x2="16.65" y2="16.65"/>
               </svg>
-              Cari Laporan
             </button>
           </div>
         </form>
 
-        <!-- Manfaat -->
-        <ul class="hero-benefits" aria-label="Manfaat LingkunganKU">
-          <li class="hero-benefit">
-            <span class="hero-benefit-icon" aria-hidden="true">🌱</span>
-            <span>Lingkungan Lebih Bersih</span>
-          </li>
-          <li class="hero-benefit">
-            <span class="hero-benefit-icon" aria-hidden="true">🤝</span>
-            <span>Warga Lebih Peduli</span>
-          </li>
-          <li class="hero-benefit">
-            <span class="hero-benefit-icon" aria-hidden="true">⚡</span>
-            <span>Laporan Lebih Cepat</span>
-          </li>
-        </ul>
 
       </div>
     </section>
@@ -279,9 +244,6 @@
     </section>
 
   </main>
-
-  <!-- Parallax JS -->
-  <script src="./js/hero-parallax.js"></script>
 
   <!-- Beranda JS -->
   <script>

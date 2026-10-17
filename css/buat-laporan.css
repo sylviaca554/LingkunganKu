@@ -275,6 +275,19 @@ body.laporan-perlu-login > main {
   margin-bottom: 0;
 }
 
+#peta-lokasi {
+  min-height: 20rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  z-index: 0;
+}
+
+#peta-status {
+  margin-top: var(--space-2);
+  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+}
+
 #form-laporan fieldset > p {
   margin-top: var(--space-2);
   color: var(--color-text-muted);

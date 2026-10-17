@@ -2,7 +2,7 @@
   var host = document.querySelector('.site-header');
   if (!host) return;
 
-  var FOTO_DEFAULT = './assets/images/foto_profil.jpg';
+  var FOTO_DEFAULT = './assets/images/avatar-default.png';
 
   // Tentukan menu aktif dari nama file (bisa ditimpa lewat data-aktif)
   var halaman = location.pathname.split('/').pop() || 'index.html';

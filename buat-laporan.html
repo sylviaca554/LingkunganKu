@@ -8,6 +8,12 @@
   <link rel="stylesheet" href="./css/style.css">
   <link rel="stylesheet" href="./css/buat-laporan.css">
   <link rel="stylesheet" href="./css/navbar.css">
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""
+  >
 </head>
 <body>
 
@@ -144,10 +150,13 @@
 
             <li>
               <label for="titik-maps">Arahkan Titik Maps</label>
-              <input type="text" id="titik-maps" name="titik_maps" placeholder="Contoh: -6.1751, 106.8272">
-              <p>Masukkan koordinat atau nama lokasi pada peta.</p>
+              <input type="text" id="titik-maps" name="titik_maps" placeholder="Contoh: -7.6150, 111.9465">
+              <button type="button" id="gunakan-lokasi-saya">Gunakan lokasi saya</button>
+              <p>Peta mengikuti pilihan lokasi. Geser penanda untuk menentukan titik yang lebih tepat; koordinat latitude, longitude akan terisi otomatis.</p>
             </li>
           </ol>
+          <div id="peta-lokasi" role="region" aria-label="Peta lokasi laporan di Kabupaten Nganjuk"></div>
+          <p id="peta-status" aria-live="polite">Peta menampilkan Kabupaten Nganjuk.</p>
         </fieldset>
 
         <button type="button" data-step-previous>Kembali</button>
@@ -226,10 +235,20 @@
 
   </main>
 
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""
+  ></script>
   <script>
     var formLaporan = document.getElementById('form-laporan');
     var aksesLaporan = document.getElementById('akses-laporan');
     var laporanBerhasil = document.getElementById('laporan-berhasil');
+    var kecamatanSelect = document.getElementById('kecamatan');
+    var kelurahanSelect = document.getElementById('kelurahan');
+    var koordinatInput = document.getElementById('titik-maps');
+    var tombolLokasiSaya = document.getElementById('gunakan-lokasi-saya');
+    var petaStatus = document.getElementById('peta-status');
     var navigasiLangkah = document.querySelector(
       'nav[aria-label="Langkah pengisian laporan"]'
     );
@@ -238,6 +257,84 @@
       'nav[aria-label="Langkah pengisian laporan"] li'
     ));
     var langkahAktif = 0;
+    var petaLokasi;
+    var penandaLokasi;
+    var koordinatKabupatenNganjuk = [-7.6150161, 111.9465075];
+    var lokasiKecamatan = {
+      prambon: { nama: 'Kecamatan Prambon', koordinat: [-7.7202357, 112.0246213] },
+      ngronggot: { nama: 'Kecamatan Ngronggot', koordinat: [-7.6713587, 112.0563335] },
+      tanjunganom: { nama: 'Kecamatan Tanjunganom', koordinat: [-7.6289665, 112.0187415] },
+      pace: { nama: 'Kecamatan Pace', koordinat: [-7.6816073, 111.9363912] }
+    };
+    var lokasiKelurahan = {
+      bandung: { nama: 'Desa Bandung', koordinat: [-7.685, 112.012] },
+      tanjungtani: { nama: 'Desa Tanjung Tani', koordinat: [-7.7151557, 112.0277775] },
+      baleturi: { nama: 'Desa Baleturi', koordinat: [-7.675, 111.965] },
+      jetis: { nama: 'Desa Jetis', koordinat: [-7.6578672, 111.9325665] }
+    };
+
+    function inisialisasiPetaLokasi() {
+      if (petaLokasi) {
+        petaLokasi.invalidateSize();
+        return;
+      }
+
+      if (window.location.protocol === 'file:') {
+        petaStatus.textContent = 'Peta OpenStreetMap tidak dapat dimuat langsung dari file. Jalankan situs melalui server lokal, misalnya VS Code Live Server, lalu buka lewat http://localhost.';
+        return;
+      }
+
+      if (typeof L === 'undefined') {
+        petaStatus.textContent = 'Peta tidak dapat dimuat. Periksa koneksi internet lalu muat ulang halaman.';
+        return;
+      }
+
+      petaLokasi = L.map('peta-lokasi').setView(koordinatKabupatenNganjuk, 11);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+        maxZoom: 19
+      }).addTo(petaLokasi);
+      penandaLokasi = L.marker(koordinatKabupatenNganjuk, { draggable: true })
+        .addTo(petaLokasi)
+        .bindPopup('Kabupaten Nganjuk');
+      penandaLokasi.on('dragend', function () {
+        var koordinat = penandaLokasi.getLatLng();
+        var koordinatTerpilih = [koordinat.lat, koordinat.lng];
+        var koordinatTeks = koordinatTerpilih.map(function (nilai) {
+          return nilai.toFixed(6);
+        }).join(', ');
+
+        koordinatInput.value = koordinatTeks;
+        penandaLokasi.bindPopup('Titik terpilih: ' + koordinatTeks).openPopup();
+        petaStatus.textContent = 'Titik lokasi dipilih pada koordinat ' + koordinatTeks + '.';
+      });
+    }
+
+    function arahkanPeta(koordinat, zoom, namaLokasi) {
+      if (!petaLokasi) {
+        return;
+      }
+
+      koordinatInput.value = koordinat.map(function (nilai) {
+        return nilai.toFixed(6);
+      }).join(', ');
+      petaLokasi.flyTo(koordinat, zoom);
+      penandaLokasi.setLatLng(koordinat).bindPopup(namaLokasi).openPopup();
+      petaStatus.textContent = 'Peta menampilkan ' + namaLokasi + '.';
+    }
+
+    function perbaruiPetaDariPilihan() {
+      var desa = lokasiKelurahan[kelurahanSelect.value];
+      var kecamatan = lokasiKecamatan[kecamatanSelect.value];
+
+      if (desa) {
+        arahkanPeta(desa.koordinat, 15, desa.nama);
+      } else if (kecamatan) {
+        arahkanPeta(kecamatan.koordinat, 13, kecamatan.nama);
+      } else {
+        arahkanPeta(koordinatKabupatenNganjuk, 11, 'Kabupaten Nganjuk');
+      }
+    }
 
     function tampilkanLangkah(index) {
       langkahAktif = index;
@@ -248,6 +345,11 @@
           langkah.querySelector('h1, h2').focus();
         }
       });
+
+      if (langkahAktif === 1) {
+        inisialisasiPetaLokasi();
+        perbaruiPetaDariPilihan();
+      }
 
       indikatorLangkah.forEach(function (indikator, langkahIndex) {
         if (langkahIndex === langkahAktif) {
@@ -281,6 +383,64 @@
         tampilkanLangkah(langkahAktif + 1);
       } else if (tombol.hasAttribute('data-step-previous')) {
         tampilkanLangkah(langkahAktif - 1);
+      }
+    });
+
+    kecamatanSelect.addEventListener('change', function () {
+      kelurahanSelect.value = '';
+      perbaruiPetaDariPilihan();
+    });
+    kelurahanSelect.addEventListener('change', perbaruiPetaDariPilihan);
+    tombolLokasiSaya.addEventListener('click', function () {
+      if (!window.isSecureContext) {
+        petaStatus.textContent = 'Fitur lokasi memerlukan koneksi aman. Buka situs melalui https:// atau http://localhost.';
+        return;
+      }
+
+      if (!navigator.geolocation) {
+        petaStatus.textContent = 'Browser ini tidak mendukung fitur lokasi.';
+        return;
+      }
+
+      tombolLokasiSaya.disabled = true;
+      petaStatus.textContent = 'Sedang mencari lokasi Anda... Izinkan akses lokasi pada browser jika diminta.';
+      navigator.geolocation.getCurrentPosition(function (posisi) {
+        var koordinat = [posisi.coords.latitude, posisi.coords.longitude];
+        arahkanPeta(koordinat, 17, 'Lokasi Anda');
+        tombolLokasiSaya.disabled = false;
+      }, function (kesalahan) {
+        if (kesalahan.code === kesalahan.PERMISSION_DENIED) {
+          petaStatus.textContent = 'Izin lokasi ditolak. Izinkan akses lokasi untuk situs ini melalui pengaturan browser.';
+        } else if (kesalahan.code === kesalahan.POSITION_UNAVAILABLE) {
+          petaStatus.textContent = 'Lokasi Anda tidak tersedia. Pastikan layanan lokasi perangkat aktif.';
+        } else if (kesalahan.code === kesalahan.TIMEOUT) {
+          petaStatus.textContent = 'Pencarian lokasi terlalu lama. Silakan coba lagi.';
+        } else {
+          petaStatus.textContent = 'Lokasi tidak dapat ditemukan. Silakan coba lagi.';
+        }
+        tombolLokasiSaya.disabled = false;
+      }, {
+        enableHighAccuracy: true,
+        timeout: 15000,
+        maximumAge: 0
+      });
+    });
+    koordinatInput.addEventListener('change', function () {
+      var koordinat = koordinatInput.value.split(',').map(function (nilai) {
+        return Number(nilai.trim());
+      });
+      var valid = koordinat.length === 2
+        && koordinatInput.value.split(',').every(function (nilai) {
+          return nilai.trim() !== '';
+        })
+        && koordinat.every(Number.isFinite)
+        && koordinat[0] >= -90 && koordinat[0] <= 90
+        && koordinat[1] >= -180 && koordinat[1] <= 180;
+
+      if (valid) {
+        arahkanPeta(koordinat, 17, 'Koordinat ' + koordinat.join(', '));
+      } else if (koordinatInput.value.trim()) {
+        petaStatus.textContent = 'Format koordinat tidak valid. Gunakan latitude, longitude.';
       }
     });
 

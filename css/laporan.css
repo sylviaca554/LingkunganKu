@@ -15,7 +15,7 @@
 
 /* ── Container ── */
 .laporan-page {
-  max-width: 900px;
+  max-width: 1116px;
   margin: 0 auto;
   padding: 32px 24px 80px;
   box-sizing: border-box;
@@ -205,16 +205,37 @@
   gap: 14px;
 }
 
+.laporan-page .laporan-list {
+  width: 100%;
+  margin-left: 0;
+}
+
+.laporan-list li[hidden] {
+  display: none;
+}
+
+.laporan-search-empty {
+  margin: 0;
+  padding: 20px;
+  color: #64748b;
+  background: #ffffff;
+  border: 1px dashed #cbd5e1;
+  border-radius: 12px;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
 /* Kartu: teks kiri, foto kanan */
 .laporan-item-card {
   display: flex;
   flex-direction: row;
+  align-items: stretch;
   background: #ffffff;
   border-radius: 16px;
   border: 1px solid #e2e8f0;
   box-shadow: 0 2px 8px rgba(15,23,42,0.06);
   overflow: hidden;
-  min-height: 140px;
+  min-height: 120px;
   transition: box-shadow 0.25s, transform 0.25s;
 }
 
@@ -223,40 +244,36 @@
   transform: translateY(-2px);
 }
 
-/* Teks — kiri */
+/* Teks — kiri, ambil sisa ruang */
 .laporan-item-body {
-  flex: 1;
-  padding: 18px 20px;
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 14px 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 7px;
-  min-width: 0;
+  gap: 5px;
 }
 
-/* Foto — kanan, ukuran FIXED */
+/* Foto — kanan, lebar tetap */
 .laporan-item-img-wrap {
-  width: 220px;
-  height: 140px;
-  flex-shrink: 0;
-  flex-grow: 0;
+  flex: 0 0 210px;
+  width: 210px;
   overflow: hidden;
   background: #e2e8f0;
-  align-self: stretch;
-  display: flex;
-  align-items: stretch;
+  position: relative;
 }
 
-/* Foto memenuhi wrapper — width & height FIXED, bukan 100% */
+/* Gambar memenuhi wrapper sepenuhnya */
 .laporan-item-img-wrap img {
-  display: block;
-  width: 220px;
+  position: absolute;
+  inset: 0;
+  width: 100%;
   height: 100%;
-  min-height: 140px;
   object-fit: cover;
   object-position: center;
-  flex-shrink: 0;
-  max-width: none;    /* batalkan base.css max-width:100% */
+  display: block;
+  max-width: none;
   transition: transform 0.3s;
 }
 
@@ -267,14 +284,13 @@
 /* Placeholder — hanya muncul via onerror */
 .laporan-item-placeholder {
   display: none;
-  width: 220px;
-  min-height: 140px;
+  position: absolute;
+  inset: 0;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   gap: 8px;
   background: linear-gradient(135deg, #e0f2fe 0%, #dcfce7 100%);
-  flex-shrink: 0;
 }
 
 .laporan-item-placeholder-text {
@@ -298,6 +314,13 @@
   font-size: 0.8rem;
   color: #64748b;
   margin: 0;
+}
+
+.laporan-item-lokasi {
+  margin: 0;
+  color: #475569;
+  font-size: 0.8rem;
+  line-height: 1.4;
 }
 
 .laporan-item-meta {
@@ -360,23 +383,32 @@
   .laporan-search-btn  { width: 100%; padding: 11px; }
 
   /* Mobile: foto di atas, teks di bawah */
-  .laporan-item-card { flex-direction: column; }
+  .laporan-item-card {
+    flex-direction: column;
+    min-height: auto;
+  }
 
   .laporan-item-img-wrap {
+    flex: none;
     width: 100%;
     height: 180px;
-    align-self: auto;
+    position: relative;
   }
 
   .laporan-item-img-wrap img {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    height: 180px;
-    min-height: 180px;
+    height: 100%;
+    max-width: none;
+    min-height: auto;
   }
 
   .laporan-item-placeholder {
+    position: absolute;
+    inset: 0;
     width: 100%;
-    min-height: 180px;
+    min-height: auto;
   }
 }
 

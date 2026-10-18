@@ -2,107 +2,164 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">  <title>LingkunganKU - Cari Laporan</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./css/base.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/navbar.css">
+  <link rel="stylesheet" href="./css/laporan.css">
+  <link rel="stylesheet" href="./css/cari-laporan.css">
+  <title>LingkunganKU - Cari Laporan</title>
   <meta name="description" content="Cari laporan masalah lingkungan berdasarkan kata kunci atau alamat. Tidak perlu login.">
 </head>
-<body>
+<body class="page-cari">
 
-  <header>
-    <nav aria-label="Navigasi Kembali">
-      <a href="index.html">&larr; Kembali</a>
-    </nav>
-    <h1>Cari Laporan</h1>
-    <p>Temukan laporan lingkungan tanpa perlu masuk akun.</p>
-  </header>
+  <main class="cari-main">
+    <div class="laporan-page">
+      <a href="index.html" class="cari-back-link">&larr; Kembali</a>
 
-  <main>
+      <div class="laporan-page-header">
+        <div class="laporan-page-header-text">
+          <h1>Cari Laporan</h1>
+          <p>Temukan dan pantau laporan masalah lingkungan di sekitar Anda.</p>
+        </div>
+      </div>
 
-    <!-- Form Pencarian -->
-    <section aria-labelledby="cari-heading">
-      <h2 id="cari-heading">Pencarian Laporan</h2>
+      <div class="laporan-controls">
+        <form class="laporan-search-form" action="cari-laporan.html" method="get" role="search">
+          <label for="kata-kunci" class="sr-only">Cari berdasarkan judul, kategori, atau lokasi</label>
+          <div class="laporan-search-wrap">
+            <svg class="laporan-search-icon" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+            <input type="search" id="kata-kunci" name="q" class="laporan-search-input"
+                   placeholder="Cari judul, kategori, atau lokasi laporan...">
+          </div>
+          <button type="submit" class="laporan-search-btn">Cari</button>
+        </form>
+      </div>
 
-      <form action="cari-laporan.html" method="get" role="search">
-        <fieldset>
-          <legend>Cari berdasarkan kata kunci atau alamat</legend>
-          <label for="kata-kunci">Kata kunci</label>
-          <input
-            type="search"
-            id="kata-kunci"
-            name="q"
-            placeholder="Contoh: jalan berlubang, Palmerah, sampah..."
-            autofocus>
-          <button type="submit">Cari</button>
-        </fieldset>
-      </form>
-    </section>
+      <section aria-labelledby="hasil-heading">
+        <div class="cari-results-heading">
+          <h2 id="hasil-heading">Hasil Pencarian</h2>
+          <p id="hasil-info" aria-live="polite"></p>
+        </div>
 
-    <!-- Hasil Pencarian -->
-    <section aria-labelledby="hasil-heading">
-      <h2 id="hasil-heading">Hasil Pencarian</h2>
-      <p>Menampilkan laporan yang relevan dengan kata kunci Anda.</p>
+        <ul class="laporan-list" id="daftar-hasil" aria-label="Hasil pencarian laporan">
+          <li data-searchable="jalan berlubang infrastruktur jalan raya diproses jl kemanggisan raya palmerah">
+            <a href="detail-laporan.html?id=jalan-berlubang&amp;dari=laporan-semua.html" class="laporan-item-link">
+              <article class="laporan-item-card">
+                <div class="laporan-item-img-wrap">
+                  <img src="./assets/images/laporan-jalan-berlubang.webp"
+                       alt="Foto laporan jalan berlubang" class="laporan-item-img" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="laporan-item-placeholder" aria-hidden="true">
+                    <span class="laporan-item-placeholder-text">Foto Laporan</span>
+                  </div>
+                </div>
+                <div class="laporan-item-body">
+                  <h2 class="laporan-item-title">Jalan berlubang</h2>
+                  <p class="laporan-item-kategori">Infrastruktur, Jalan Raya</p>
+                  <p class="laporan-item-lokasi">Jl. Kemanggisan Raya, Palmerah</p>
+                  <p class="laporan-item-meta">2 jam yang lalu</p>
+                  <span class="laporan-item-badge badge--diproses">Diproses</span>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li data-searchable="lampu jalan mati fasilitas umum selesai jl sudirman menteng jakarta pusat">
+            <a href="detail-laporan.html?id=lampu-jalan-mati&amp;dari=laporan-semua.html" class="laporan-item-link">
+              <article class="laporan-item-card">
+                <div class="laporan-item-img-wrap">
+                  <img src="./assets/images/laporan-lampu-jalan-mati.webp"
+                       alt="Foto laporan lampu jalan mati" class="laporan-item-img" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="laporan-item-placeholder" aria-hidden="true">
+                    <span class="laporan-item-placeholder-text">Foto Laporan</span>
+                  </div>
+                </div>
+                <div class="laporan-item-body">
+                  <h2 class="laporan-item-title">Lampu Jalan Mati</h2>
+                  <p class="laporan-item-kategori">Fasilitas Umum</p>
+                  <p class="laporan-item-lokasi">Jl. Sudirman, Menteng, Jakarta Pusat</p>
+                  <p class="laporan-item-meta">3 jam yang lalu</p>
+                  <span class="laporan-item-badge badge--selesai">Selesai</span>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li data-searchable="sampah menumpuk kebersihan diproses jl mangga besar taman sari jakarta barat">
+            <a href="detail-laporan.html?id=sampah-menumpuk&amp;dari=laporan-semua.html" class="laporan-item-link">
+              <article class="laporan-item-card">
+                <div class="laporan-item-img-wrap">
+                  <img src="./assets/images/laporan-sampah-menumpuk.webp"
+                       alt="Foto laporan sampah menumpuk" class="laporan-item-img" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="laporan-item-placeholder" aria-hidden="true">
+                    <span class="laporan-item-placeholder-text">Foto Laporan</span>
+                  </div>
+                </div>
+                <div class="laporan-item-body">
+                  <h2 class="laporan-item-title">Sampah Menumpuk</h2>
+                  <p class="laporan-item-kategori">Kebersihan</p>
+                  <p class="laporan-item-lokasi">Jl. Mangga Besar, Taman Sari, Jakarta Barat</p>
+                  <p class="laporan-item-meta">6 jam yang lalu</p>
+                  <span class="laporan-item-badge badge--diproses">Diproses</span>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li data-searchable="selokan tersumbat sanitasi diproses jl kramat jati jakarta timur">
+            <a href="detail-laporan.html?id=selokan-tersumbat&amp;dari=laporan-semua.html" class="laporan-item-link">
+              <article class="laporan-item-card">
+                <div class="laporan-item-img-wrap">
+                  <img src="./assets/images/laporan-selokan-tersumbat.webp"
+                       alt="Foto laporan selokan tersumbat" class="laporan-item-img" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="laporan-item-placeholder" aria-hidden="true">
+                    <span class="laporan-item-placeholder-text">Foto Laporan</span>
+                  </div>
+                </div>
+                <div class="laporan-item-body">
+                  <h2 class="laporan-item-title">Selokan Tersumbat</h2>
+                  <p class="laporan-item-kategori">Sanitasi</p>
+                  <p class="laporan-item-lokasi">Jl. Kramat Jati, Jakarta Timur</p>
+                  <p class="laporan-item-meta">12 jam yang lalu</p>
+                  <span class="laporan-item-badge badge--diproses">Diproses</span>
+                </div>
+              </article>
+            </a>
+          </li>
+          <li data-searchable="sampah menumpuk kebersihan ditolak jl cempaka putih jakarta pusat">
+            <a href="detail-laporan.html?id=sampah-menumpuk-ditolak&amp;dari=laporan-semua.html" class="laporan-item-link">
+              <article class="laporan-item-card">
+                <div class="laporan-item-img-wrap">
+                  <img src="./assets/images/laporan-sampah-menumpuk.webp"
+                       alt="Foto laporan sampah menumpuk" class="laporan-item-img" loading="lazy"
+                       onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+                  <div class="laporan-item-placeholder" aria-hidden="true">
+                    <span class="laporan-item-placeholder-text">Foto Laporan</span>
+                  </div>
+                </div>
+                <div class="laporan-item-body">
+                  <h2 class="laporan-item-title">Sampah Menumpuk</h2>
+                  <p class="laporan-item-kategori">Kebersihan</p>
+                  <p class="laporan-item-lokasi">Jl. Cempaka Putih, Jakarta Pusat</p>
+                  <p class="laporan-item-meta">2 hari yang lalu</p>
+                  <span class="laporan-item-badge badge--ditolak">Ditolak</span>
+                </div>
+              </article>
+            </a>
+          </li>
+        </ul>
+        <p id="hasil-kosong" class="cari-empty-state" hidden>Tidak ada laporan yang cocok. Coba kata kunci atau lokasi lain.</p>
+      </section>
 
-      <ul aria-label="Daftar hasil pencarian laporan">
-        <li>
-          <article>
-            <h3>Jalan berlubang</h3>
-            <p>Kategori: Infrastruktur</p>
-            <p>Lokasi: Jl. Kemanggisan Utama, Palmerah</p>
-            <p>2 jam yang lalu</p>
-            <a href="detail-laporan.html"><strong>Diproses</strong></a>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Jalan berlubang</h3>
-            <p>Kategori: Infrastruktur</p>
-            <p>Lokasi: Jl. Raya Panjang, Kebon Jeruk</p>
-            <p>1 hari yang lalu</p>
-            <a href="detail-laporan.html"><strong>Selesai</strong></a>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Sampah Menumpuk</h3>
-            <p>Kategori: Kebersihan</p>
-            <p>Lokasi: Jl. Anggrek No.7, Slipi</p>
-            <p>5 jam yang lalu</p>
-            <a href="detail-laporan.html"><strong>Diproses</strong></a>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Lampu Jalan Mati</h3>
-            <p>Kategori: Fasilitas Umum</p>
-            <p>Lokasi: Jl. Panjang, Kebon Jeruk</p>
-            <p>8 jam yang lalu</p>
-            <a href="detail-laporan.html"><strong>Selesai</strong></a>
-          </article>
-        </li>
-        <li>
-          <article>
-            <h3>Selokan Tersumbat</h3>
-            <p>Kategori: Sanitasi</p>
-            <p>Lokasi: Jl. Rawa Belong, Palmerah</p>
-            <p>12 jam yang lalu</p>
-            <a href="detail-laporan.html"><strong>Menunggu</strong></a>
-          </article>
-        </li>
-      </ul>
-    </section>
-
-    <!-- CTA Login untuk buat laporan -->
-    <section aria-labelledby="cta-heading">
-      <h2 id="cta-heading">Ingin Membuat Laporan?</h2>
-      <p>Masuk atau daftar akun untuk melaporkan masalah lingkungan di sekitar Anda.</p>
-      <a href="login.html">
-        <button type="button">Masuk</button>
-      </a>
-      <a href="register.html">
-        <button type="button">Daftar Akun</button>
-      </a>
-    </section>
-
+    </div>
   </main>
+
+  <script src="./js/cari-laporan.js" defer></script>
 
 </body>
 </html>
